@@ -1,0 +1,130 @@
+.dashboard {
+  &__backgroundSide {
+    background-position: center;
+    background-repeat: no-repeat !important;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    margin-bottom: auto;
+    background-image: linear-gradient(#569ad3, #488cc7);
+  }
+
+  &__logo {
+    width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__heading {
+    text-align: left;
+    margin-left: 70px;
+    font: normal normal normal 18px/16px Lato;
+    letter-spacing: 0px;
+    color: #ffffff;
+    opacity: 1;
+    word-spacing: 10px;
+  }
+
+  &__icon {
+    width: 20px;
+  }
+
+  &__hdashboard {
+    margin-top: 91px;
+    margin-left: 50px;
+    text-align: left;
+    font: normal normal bold 21px/23px Lato;
+    letter-spacing: 0px;
+    color: #405568;
+    opacity: 1;
+  }
+
+  &__tdashboard {
+    text-align: left;
+    margin-left: 70px;
+    margin-top: 100px;
+    font: normal normal bold 16px/23px Lato;
+    letter-spacing: 0px;
+    color: #405568;
+    opacity: 1;
+  }
+
+  &__chart {
+    margin-left: 50px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 19px;
+    opacity: 0.64;
+    width: 700px;
+    height: 350px;
+  }
+
+  &__tdashboard2 {
+    text-align: left;
+    margin-left: 180px;
+    margin-top: 100px;
+    font: normal normal bold 16px/23px Lato;
+    letter-spacing: 0px;
+    color: #405568;
+    opacity: 1;
+  }
+
+  &__cardd {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 12px 20px #8D8D8D29;
+    opacity: 1;
+    width: 200px;
+    border-radius: 10px;
+    margin-left: 175px;
+  }
+
+  &__cardd2 {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 12px 20px #8D8D8D29;
+    opacity: 1;
+    width: 200px;
+    border-radius: 10px;
+    margin-left: 250px;
+  }
+
+  &__imgButton {
+    background: #4199D5 0% 0% no-repeat padding-box;
+    opacity: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: 10px;
+    color: white;
+  }
+
+  &__name {
+    text-align: left;
+    font: normal normal bold 14px Lato;
+    letter-spacing: 0px;
+    color: #405568;
+  }
+
+  &__span {
+    text-align: left;
+    font: normal normal normal 12px Lato;
+    letter-spacing: 0px;
+    color: #405568;
+  }
+
+  &__profile {
+    margin-top: -80px;
+    margin-right: -50px;
+  }
+}
+
+.dashboard2 {
+  &__backgroundSide {
+    background-position: center;
+    background-repeat: no-repeat !important;
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    margin-bottom: auto;
+    background-image: linear-gradient(#f4f9fd);
+  }
+}

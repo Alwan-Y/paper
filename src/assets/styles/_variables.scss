@@ -1,0 +1,22 @@
+$amber: #ffc107;
+$sail: #99e8f7;
+$cream: #fffcd1;
+
+$cornflower-blue: #7371fc;
+$french-lilac: #e5d9f2;
+$white: #fff;
+$black: #000;
+
+$primary: $sail;
+$secondary: $cream;
+$info: $cornflower-blue;
+$success: #afe47c;
+$danger: #F4F9FD;
+$transparent: transparent;
+
+// Override Bootstrap Navbar Dark
+$navbar-dark-color: rgba($secondary, 0.5) !default;
+$navbar-dark-hover-color: rgba($secondary, 0.75) !default;
+$navbar-dark-active-color: $secondary !default;
+$navbar-dark-disabled-color: rgba($secondary, 0.25) !default;
+$navbar-dark-toggler-border-color: rgba($secondary, 0.1) !default;

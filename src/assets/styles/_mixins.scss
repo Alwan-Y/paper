@@ -1,0 +1,60 @@
+@mixin caption($font-size: 8vh, $letter-spacing: 1vw, $color: $secondary) {
+  font-size: $font-size;
+  letter-spacing: $letter-spacing;
+  color: $color;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+@mixin background(
+  $url,
+  $direction,
+  $color1: $black,
+  $percent1: 0%,
+  $color2: $transparent,
+  $percent2: 0%,
+  $color3: $transparent,
+  $percent3: 100%,
+  $color4: $black,
+  $percent4: 100%
+) {
+  &--background {
+    background-image: linear-gradient(
+        to $direction,
+        $color1 $percent1,
+        $color2 $percent2,
+        $color3 $percent3,
+        $color4 $percent4
+      ),
+      url($url);
+  }
+}
+
+@mixin svg-animation(
+  $animation-name,
+  $after-color: $white,
+  $stroke-dasharray: 0,
+  $stroke-dashoffset: 0
+) {
+  &--#{$animation-name} path {
+    stroke-dasharray: $stroke-dasharray;
+    stroke-dashoffset: $stroke-dashoffset;
+
+    &:hover {
+      animation: #{$animation-name} 1s linear forwards;
+
+      @keyframes #{$animation-name} {
+        0% {
+          stroke-dashoffset: $stroke-dashoffset;
+          fill: $transparent;
+        }
+
+        100% {
+          stroke-dashoffset: $stroke-dasharray;
+          stroke: $after-color;
+          fill: $after-color;
+        }
+      }
+    }
+  }
+}
