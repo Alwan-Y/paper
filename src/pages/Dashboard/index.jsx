@@ -3,7 +3,7 @@ import dashboardLogo from "../../assets/images/index/dashboard.svg";
 import financeLogo from "../../assets/images/index/finance.svg";
 import userLogo from "../../assets/images/index/users.svg";
 import { useState, useEffect } from "react";
-import { Bar, Bubble } from "react-chartjs-2";
+import { Bar} from "react-chartjs-2";
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
