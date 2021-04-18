@@ -1,6 +1,6 @@
 .login {
   background-color: #3b7fba;
-  @include background("../images/index/paper.png", bottom);
+  @include background('../images/index/paper.png', bottom);
 
   &__logo {
     width: 250px;
@@ -9,7 +9,7 @@
   }
 
   &__heading {
-    font-family: "Lato", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 55px;
     color: white;
@@ -27,7 +27,7 @@
 
   &__text {
     text-align: center;
-    font-family: "Lato", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 100;
     font-size: 22px;
     letter-spacing: 0px;
@@ -45,14 +45,14 @@
 }
 
 #email {
-  background-image: url("../../images/index/icon_account_white.svg");
+  background-image: url('../../images/index/icon_account_white.svg');
   background-repeat: no-repeat;
   text-indent: 20px;
   color: white;
 }
 
 #password {
-  background-image: url("../../images/index/icon_lock_white.svg");
+  background-image: url('../../images/index/icon_lock_white.svg');
   background-repeat: no-repeat;
   text-indent: 20px;
   color: white;

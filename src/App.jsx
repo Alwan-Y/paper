@@ -3,9 +3,9 @@ import {
   Switch,
   BrowserRouter as Router,
   Redirect,
-} from "react-router-dom";
-import pages from "./pages";
-import routes from "./configs/routes";
+} from 'react-router-dom';
+import pages from './pages';
+import routes from './configs/routes';
 
 function App() {
   return (

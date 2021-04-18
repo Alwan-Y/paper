@@ -1,5 +1,5 @@
-import paperLogo from "../../assets/images/index/paperlogo.png";
-import iconTutorial from "../../assets/images/index/Tutorial.svg";
+import paperLogo from '../../assets/images/index/paperlogo.png';
+import iconTutorial from '../../assets/images/index/Tutorial.svg';
 
 const Login = () => {
   return (
