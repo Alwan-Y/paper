@@ -1,7 +1,7 @@
 import paperLogo from "../../assets/images/index/paperlogo.png";
 import dashboardLogo from "../../assets/images/index/dashboard.svg";
 import financeLogo from "../../assets/images/index/finance.svg";
-import userLogo from "../../assets/images/index/users.svg"
+import userLogo from "../../assets/images/index/users.svg";
 import { useState, useEffect } from "react";
 import { Bar, Bubble } from "react-chartjs-2";
 
@@ -99,8 +99,13 @@ const Dashboard = () => {
                       <h3 className="dashboard__imgButton">AA</h3>
                     </div>
                     <div className="col-8">
-                      <h6 className="m-0" className="dashboard__name mt-2">Adam Aria <span className="dashboard__span">- Bank</span></h6>
-                      <p className="m-0 " className="dashboard__span">New Account</p>
+                      <h6 className="m-0" className="dashboard__name mt-2">
+                        Adam Aria{" "}
+                        <span className="dashboard__span">- Bank</span>
+                      </h6>
+                      <p className="m-0 " className="dashboard__span">
+                        New Account
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -110,8 +115,13 @@ const Dashboard = () => {
                       <h3 className="dashboard__imgButton">AA</h3>
                     </div>
                     <div className="col-8">
-                      <h6 className="m-0" className="dashboard__name mt-2">Adam Aria <span className="dashboard__span">- Bank</span></h6>
-                      <p className="m-0 " className="dashboard__span">New Account</p>
+                      <h6 className="m-0" className="dashboard__name mt-2">
+                        Adam Aria{" "}
+                        <span className="dashboard__span">- Bank</span>
+                      </h6>
+                      <p className="m-0 " className="dashboard__span">
+                        New Account
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -120,18 +130,32 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-        <div className="btn-group dashboard__profile">
-  <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <img src={userLogo} alt="user logo"/> User
-  </button>
-  <div className="dropdown-menu">
-    <a className="dropdown-item" href="#"><h5>User Name</h5> <h6>Example</h6></a>
-    <a className="dropdown-item" href="#"><h5>Name</h5> <h6>Example</h6></a>
-    <a className="dropdown-item" href="#"><h5>Last Login</h5> <h6>2021-03-12 12:00:01</h6></a>
-    <div className="dropdown-divider"></div>
-    <a className="dropdown-item" href="#">Logout</a>
-  </div>
-</div>
+          <div className="btn-group dashboard__profile">
+            <button
+              type="button"
+              className="btn btn-danger dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img src={userLogo} alt="user logo" /> User
+            </button>
+            <div className="dropdown-menu">
+              <a className="dropdown-item" href="#">
+                <h5>User Name</h5> <h6>Example</h6>
+              </a>
+              <a className="dropdown-item" href="#">
+                <h5>Name</h5> <h6>Example</h6>
+              </a>
+              <a className="dropdown-item" href="#">
+                <h5>Last Login</h5> <h6>2021-03-12 12:00:01</h6>
+              </a>
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#">
+                Logout
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
