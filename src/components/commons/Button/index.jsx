@@ -7,6 +7,7 @@ const Button = ({
   outline,
   children,
   className,
+  onClick,
   ...rest
 }) => (
   <button
@@ -19,6 +20,7 @@ const Button = ({
       { 'btn-block': block },
       className
     )}
+    onClick={onClick}
   >
     {children}
   </button>

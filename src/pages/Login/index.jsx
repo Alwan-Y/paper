@@ -4,8 +4,33 @@ import Button from '../../components/commons/Button';
 import Input from '../../components/commons/Input';
 import Heading6 from '../../components/commons/Heading6';
 import Heading1 from '../../components/commons/Heading1';
+import API from '../../services'
+import { useState } from 'react'
+import { useHistory } from "react-router-dom";
+import ROUTES from '../../configs/routes'
 
 const Login = () => {
+  const history = useHistory();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const login = async () => {
+    const loginUser = await API.login(email, password)
+    const { data } = loginUser
+
+    if (!data) {
+      return alert("Ups email / password wrong")
+    }
+
+    localStorage.setItem("last_login", data.last_login);
+    localStorage.setItem("name", data.name);
+    localStorage.setItem("token", data.token);
+
+    alert("Succes login")
+
+    history.push(ROUTES.DASHBOARD)
+  }
+
   return (
     <div>
       <div className="jumbotron jumbotron-fluid login login--background">
@@ -24,12 +49,16 @@ const Login = () => {
               <Heading6 className="login__text mt-4">
                 Masuk dengan akun yang terdaftar di <br /> Paper.id/PayPer
               </Heading6>
-              <form className="mt-5">
+              <div className="mt-5">
                 <Input
-                  type="email"
+                  type="text"
                   className="form-control login__email mt-5"
                   id="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
                 />
                 <hr />
                 <Input
@@ -37,6 +66,10 @@ const Login = () => {
                   className="form-control login__password mt-5"
                   id="password"
                   placeholder="Kata Sandi"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
                 />
                 <hr />
                 <Heading6 className="login__forgotPassword mt-5">
@@ -47,10 +80,11 @@ const Login = () => {
                   size="lg"
                   block="block"
                   className="rounded-pill mt-5"
+                  onClick={login}
                 >
                   Masuk
                 </Button>
-              </form>
+              </div>
             </div>
           </div>
         </div>

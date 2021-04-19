@@ -349,7 +349,7 @@ const Dashboard = () => {
               <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                   <li class="page-item">
-                    <a class="page-link" tabindex="-1">
+                    <a class="page-link" tabIndex="-1">
                       &laquo;
                     </a>
                   </li>
