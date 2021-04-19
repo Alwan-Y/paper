@@ -1,60 +1,28 @@
-import paperLogo from '../../assets/images/index/paperlogo.png';
-import dashboardLogo from '../../assets/images/index/dashboard.svg';
-import financeLogo from '../../assets/images/index/finance.svg';
-import userLogo from '../../assets/images/index/users.svg';
-import search from '../../assets/images/index/loupe.png';
 import { useState, useEffect } from 'react';
-import { Bar } from 'react-chartjs-2';
+import SideBar from 'components/resources/SideBar';
+import Chart from 'components/resources/Chart';
+import Dropdown from 'components/commons/Dropdown';
+import SwitchOption from 'components/commons/SwitchOption';
+import Heading1 from 'components/commons/Heading1';
+import Search from 'components/commons/Search';
+import Button from 'components/commons/Button';
+import DescriptionAccount from 'components/resources/DesciptionAccount';
+import ItemAccount from 'components/resources/ItemAccount';
+import Pagination from 'components/resources/Pagination';
+import DescriptionTransaction from 'components/resources/DescriptionTransaction';
+import ItemTransaction from 'components/resources/ItemTransaction';
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
   const [page, setPage] = useState(false);
-
-  const chartData = {
-    labels: ['Mar', 'Apr', 'Mey', 'Jun', 'Jul', 'Aug'],
-    datasets: [
-      {
-        label: 'Transaction data',
-        data: [1000000, 2000000, 3000000, 4000000, 5000000, 6000000],
-        borderWidth: 0,
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        borderColor: 'rgb(54, 162, 235)',
-      },
-    ],
-  };
+  const [financePage, setFinancePage] = useState(false);
 
   if (page) {
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-            <div className="row">
-              <div className="col dashboard__logo">
-                <img
-                  className="dashboard__logo"
-                  src={paperLogo}
-                  alt="logo paper"
-                />
-                <h6 className="dashboard__heading mt-5">
-                  {' '}
-                  <img
-                    className="dashboard__icon"
-                    src={dashboardLogo}
-                    alt="dashboard logo"
-                  />{' '}
-                  Dashboard
-                </h6>
-                <h6 className="dashboard__heading mt-5">
-                  {' '}
-                  <img
-                    className="dashboard__icon"
-                    src={financeLogo}
-                    alt=""
-                  />{' '}
-                  Finance
-                </h6>
-              </div>
-            </div>
+            <SideBar />
           </div>
           <div className="col-8 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
             <div className="row">
@@ -62,36 +30,7 @@ const Dashboard = () => {
             </div>
             <div className="row">
               <div className="col-6">
-                <h1 className="dashboard__tdashboard">Transaction Summary</h1>
-                <div className="dashboard__chart mt-5">
-                  <Bar
-                    data={chartData}
-                    options={{
-                      responsive: true,
-                      scales: {
-                        yAxes: [
-                          {
-                            ticks: {
-                              autoSkip: true,
-                              maxTicksLimit: 10,
-                              beginAtZero: true,
-                            },
-                            gridLines: {
-                              display: true,
-                            },
-                          },
-                        ],
-                        xAxes: [
-                          {
-                            gridLines: {
-                              display: false,
-                            },
-                          },
-                        ],
-                      },
-                    }}
-                  />
-                </div>
+                <Chart />
               </div>
               <div className="col-6">
                 <h1 className="dashboard__tdashboard2">Finance Account</h1>
@@ -133,32 +72,63 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <div className="btn-group dashboard__profile">
-              <button
-                type="button"
-                className="btn btn-danger dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <img src={userLogo} alt="user logo" /> User
-              </button>
-              <div className="dropdown-menu">
-                <a className="dropdown-item" href="#">
-                  <h5>User Name</h5> <h6>Example</h6>
-                </a>
-                <a className="dropdown-item" href="#">
-                  <h5>Name</h5> <h6>Example</h6>
-                </a>
-                <a className="dropdown-item" href="#">
-                  <h5>Last Login</h5> <h6>2021-03-12 12:00:01</h6>
-                </a>
-                <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#">
-                  Logout
-                </a>
+            <Dropdown />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!page && financePage) {
+    return (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
+            <SideBar />
+          </div>
+          <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
+            <SwitchOption truee="true" />
+            <hr className="finance__hr" />
+            <div className="row">
+              <div className="col text-left">
+                <Heading1 className="finance__heading ml-5 mt-5">
+                  All Finance Account
+                </Heading1>
               </div>
             </div>
+            <div className="row">
+              <div className="col-4 ml-5 mt-4">
+                <Search placeholder="Search" />
+              </div>
+              <div className="col-7 text-right">
+                <p>
+                  <Button
+                    type="info"
+                    size="lg"
+                    className="rounded-pill mt-4 finance__button"
+                  >
+                    Create New Account
+                  </Button>
+                </p>
+              </div>
+            </div>
+            <DescriptionAccount />
+            <ItemAccount
+              accountName="Example"
+              description="Example"
+              accountType="Example"
+            />
+            <ItemAccount
+              accountName="Example"
+              description="Example"
+              accountType="Example"
+            />
+            <ItemAccount
+              accountName="Example"
+              description="Example"
+              accountType="Example"
+            />
+            <Pagination />
           </div>
         </div>
       </div>
@@ -169,206 +139,57 @@ const Dashboard = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-          <div className="row">
-            <div className="col dashboard__logo">
-              <img
-                className="dashboard__logo"
-                src={paperLogo}
-                alt="logo paper"
-              />
-              <h6 className="dashboard__heading mt-5">
-                {' '}
-                <img
-                  className="dashboard__icon"
-                  src={dashboardLogo}
-                  alt="dashboard logo"
-                />{' '}
-                Dashboard
-              </h6>
-              <h6 className="dashboard__heading mt-5">
-                {' '}
-                <img
-                  className="dashboard__icon"
-                  src={financeLogo}
-                  alt=""
-                />{' '}
-                Finance
-              </h6>
-            </div>
-          </div>
+          <SideBar />
         </div>
         <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-          <div className="row finance__margin">
-            <div className="col-2">
-              <h6 className="finance__choicePage">Account</h6>
-              <div className="finance__border"></div>
-            </div>
-            <div className="col-2">
-              <h6 className="finance__choicePage">Transaction</h6>
-              <div className="finance__border"></div>
-            </div>
-          </div>
+          <SwitchOption falsee="false" />
           <hr className="finance__hr" />
           <div className="row">
             <div className="col text-left">
-              <h3 className="finance__heading ml-5 mt-5">
-                All Finance Account
-              </h3>
+              <Heading1 className="finance__heading ml-5 mt-5">
+                All Finance Transaction
+              </Heading1>
             </div>
           </div>
           <div className="row">
             <div className="col-4 ml-5 mt-4">
-              <form action="">
-                <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-                  <div class="input-group">
-                    <input
-                      type="search"
-                      placeholder="Search"
-                      aria-describedby="button-addon1"
-                      class="form-control border-0 bg-light"
-                    />
-                    <div class="input-group-append">
-                      <button
-                        id="button-addon1"
-                        type="submit"
-                        class="btn btn-link text-primary"
-                      >
-                        <img src={search} alt="" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              <Search placeholder="Search" />
             </div>
             <div className="col-7 text-right">
               <p>
-                <button
-                  type="button"
-                  className="btn btn-info btn-lg rounded-pill mt-4 finance__button"
+                <Button
+                  type="info"
+                  size="lg"
+                  className="rounded-pill mt-4 finance__button"
                 >
-                  Create New Account
-                </button>
+                  Create New Transaction
+                </Button>
               </p>
             </div>
           </div>
-          <div className="row text-left ml-5 mt-4 finance__item2 mb-5">
-            <div className="col finance__choicePage">Account Name</div>
-            <div className="col finance__choicePage">Description</div>
-            <div className="col finance__choicePage">Account Type</div>
-            <div className="col finance__choicePage">Actions</div>
-          </div>
-          <div className="row text-left ml-5 mt-2 finance__item">
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-2">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-success dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Action
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Edit
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Delete
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row text-left ml-5 mt-2 finance__item">
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-2">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-success dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Action
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Edit
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Delete
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row text-left ml-5 mt-2 finance__item">
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-3">Example</div>
-            <div className="col finance__choicePage mt-2">
-              <div className="btn-group">
-                <button
-                  type="button"
-                  className="btn btn-success dropdown-toggle"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Action
-                </button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#">
-                    View
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Edit
-                  </a>
-                  <a className="dropdown-item" href="#">
-                    Delete
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-5">
-            <div className="col">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" tabIndex="-1">
-                      &laquo;
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link">&lt;</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link">2</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link">&gt;</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link">&raquo;</a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
+          <DescriptionTransaction />
+          <ItemTransaction
+            transactionDate="Example"
+            financeAccount="Example"
+            financeAccountName="Example"
+            refrence="Example"
+            amount="Example"
+          />
+          <ItemTransaction
+            transactionDate="Example"
+            financeAccount="Example"
+            financeAccountName="Example"
+            refrence="Example"
+            amount="Example"
+          />
+          <ItemTransaction
+            transactionDate="Example"
+            financeAccount="Example"
+            financeAccountName="Example"
+            refrence="Example"
+            amount="Example"
+          />
+          <Pagination />
         </div>
       </div>
     </div>

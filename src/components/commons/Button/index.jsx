@@ -8,6 +8,9 @@ const Button = ({
   children,
   className,
   onClick,
+  dataToggle,
+  ariaHaspopup,
+  ariaExpanded,
   ...rest
 }) => (
   <button
@@ -21,6 +24,9 @@ const Button = ({
       className
     )}
     onClick={onClick}
+    data-toggle={dataToggle}
+    aria-haspopup={ariaHaspopup}
+    aria-expanded={ariaExpanded}
   >
     {children}
   </button>

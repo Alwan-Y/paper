@@ -1,35 +1,35 @@
-import paperLogo from '../../assets/images/index/paperlogo.png';
-import iconTutorial from '../../assets/images/index/Tutorial.svg';
-import Button from '../../components/commons/Button';
-import Input from '../../components/commons/Input';
-import Heading6 from '../../components/commons/Heading6';
-import Heading1 from '../../components/commons/Heading1';
-import API from '../../services'
-import { useState } from 'react'
-import { useHistory } from "react-router-dom";
-import ROUTES from '../../configs/routes'
+import paperLogo from 'assets/images/index/paperlogo.png';
+import iconTutorial from 'assets/images/index/Tutorial.svg';
+import Button from 'components/commons/Button';
+import Input from 'components/commons/Input';
+import Heading6 from 'components/commons/Heading6';
+import Heading1 from 'components/commons/Heading1';
+import API from 'services';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import ROUTES from 'configs/routes';
 
 const Login = () => {
   const history = useHistory();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const login = async () => {
-    const loginUser = await API.login(email, password)
-    const { data } = loginUser
+    const loginUser = await API.login(email, password);
+    const { data } = loginUser;
 
     if (!data) {
-      return alert("Ups email / password wrong")
+      return alert('Ups email / password wrong');
     }
 
-    localStorage.setItem("last_login", data.last_login);
-    localStorage.setItem("name", data.name);
-    localStorage.setItem("token", data.token);
+    localStorage.setItem('last_login', data.last_login);
+    localStorage.setItem('name', data.name);
+    localStorage.setItem('token', data.token);
 
-    alert("Succes login")
+    alert('Succes login');
 
-    history.push(ROUTES.DASHBOARD)
-  }
+    history.push(ROUTES.DASHBOARD);
+  };
 
   return (
     <div>
@@ -57,7 +57,7 @@ const Login = () => {
                   placeholder="Email"
                   value={email}
                   onChange={(e) => {
-                    setEmail(e.target.value)
+                    setEmail(e.target.value);
                   }}
                 />
                 <hr />
@@ -68,7 +68,7 @@ const Login = () => {
                   placeholder="Kata Sandi"
                   value={password}
                   onChange={(e) => {
-                    setPassword(e.target.value)
+                    setPassword(e.target.value);
                   }}
                 />
                 <hr />
