@@ -90,7 +90,7 @@ const ModalCreate = ({
                 <Button
                   type="success"
                   size="lg"
-                  className="rounded-pill mt-5 finance__buttonCustom2"
+                  className="rounded-pill mt-5 finance__buttonCustom4"
                   onClick={onClick}
                 >
                   Simpan
@@ -103,7 +103,7 @@ const ModalCreate = ({
                   ariaLable="Close"
                   size="lg"
                   block="block"
-                  className="rounded-pill mt-5 finance__buttonCustom3"
+                  className="rounded-pill mt-5 finance__buttonCustom5"
                 >
                   Batal
                 </Button>
