@@ -11,6 +11,9 @@ const Button = ({
   dataToggle,
   ariaHaspopup,
   ariaExpanded,
+  ariaLable,
+  dataDismiss,
+  dataTarget,
   ...rest
 }) => (
   <button
@@ -27,6 +30,9 @@ const Button = ({
     data-toggle={dataToggle}
     aria-haspopup={ariaHaspopup}
     aria-expanded={ariaExpanded}
+    aria-lable={ariaLable}
+    data-dismiss={dataDismiss}
+    data-target={dataTarget}
   >
     {children}
   </button>

@@ -11,6 +11,7 @@ import ItemAccount from 'components/resources/ItemAccount';
 import Pagination from 'components/resources/Pagination';
 import DescriptionTransaction from 'components/resources/DescriptionTransaction';
 import ItemTransaction from 'components/resources/ItemTransaction';
+import ModalCreate from 'components/commons/ModalCreate';
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
@@ -161,6 +162,8 @@ const Dashboard = () => {
                   type="info"
                   size="lg"
                   className="rounded-pill mt-4 finance__button"
+                  dataToggle="modal"
+                  dataTarget="#createNewFinance"
                 >
                   Create New Transaction
                 </Button>
@@ -174,6 +177,8 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
+            dataToggleEdit="modal"
+            dataTargetEdit="#editFinance"
           />
           <ItemTransaction
             transactionDate="Example"
@@ -190,6 +195,14 @@ const Dashboard = () => {
             amount="Example"
           />
           <Pagination />
+          <ModalCreate 
+          target="createNewFinance"
+          heading="Create New Finance"
+          />
+          <ModalCreate 
+          target="editFinance"
+          heading="Edit Finance"
+          />
         </div>
       </div>
     </div>

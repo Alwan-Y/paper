@@ -31,6 +31,13 @@
     color: #3f5468;
   }
 
+  &__heading2 {
+    font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #3f5468;
+  }
+
   &__button {
     color: white;
     font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -49,5 +56,38 @@
 
   &__item2 {
     width: 1500px;
+  }
+
+  &__backgroundModal {
+    background-color: white !important;
+  }
+
+  &__buttonCustom {
+    background: #f2f8fc 0% 0% no-repeat padding-box;
+    border-radius: 2px;
+    opacity: 1;
+    color: #8dbfe3;
+  }
+
+  &__form {
+    border: 0;
+    background-color: transparent;
+  }
+
+  &__marginCustom {
+    margin-top: -40px;
+  }
+
+  &__buttonCustom2 {
+    color: white;
+    width: 50%;
+    margin-left: 150px;
+  }
+
+  &__buttonCustom3 {
+    color: black;
+    width: 50%;
+    border: 5px solid black;
+    margin-left: -10px;
   }
 }

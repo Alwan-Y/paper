@@ -52,7 +52,7 @@ const Login = () => {
               <div className="mt-5">
                 <Input
                   type="text"
-                  className="form-control login__email mt-5"
+                  className="form-control login__form login__email mt-5"
                   id="email"
                   placeholder="Email"
                   value={email}
@@ -63,7 +63,7 @@ const Login = () => {
                 <hr />
                 <Input
                   type="password"
-                  className="form-control login__password mt-5"
+                  className="form-control login__form login__password mt-5"
                   id="password"
                   placeholder="Kata Sandi"
                   value={password}

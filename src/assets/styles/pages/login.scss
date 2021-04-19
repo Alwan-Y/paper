@@ -42,6 +42,11 @@
     color: #ffffff;
     opacity: 1;
   }
+
+  &__form {
+    border: 0;
+    background-color: #3b7fba;
+  }
 }
 
 #email {
@@ -56,11 +61,6 @@
   background-repeat: no-repeat;
   text-indent: 20px;
   color: white;
-}
-
-.form-control {
-  border: 0;
-  background-color: #3b7fba;
 }
 
 #email::placeholder {
