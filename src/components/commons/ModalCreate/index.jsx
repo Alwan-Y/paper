@@ -3,8 +3,13 @@ import Button from 'components/commons/Button';
 import Heading1 from 'components/commons/Heading1';
 
 const ModalCreate = ({
-    heading,
-    target
+  heading,
+  target,
+  onClick,
+  onChangeFinanceName,
+  onChangeFinanceAccount,
+  onChangeAmount,
+  onChangeDescription,
 }) => {
   return (
     <div
@@ -46,6 +51,7 @@ const ModalCreate = ({
                       className="form-control finance__form"
                       id="exampleInputEmail1"
                       placeholder="Input your finance name"
+                      onChange={onChangeFinanceName}
                     />
                   </div>
                   <div class="form-group">
@@ -55,6 +61,7 @@ const ModalCreate = ({
                       className="form-control finance__form"
                       id="exampleInputPassword1"
                       placeholder="Select Finance Account"
+                      onChange={onChangeFinanceAccount}
                     />
                   </div>
                   <div class="form-group">
@@ -63,6 +70,7 @@ const ModalCreate = ({
                       type="text"
                       className="form-control finance__form"
                       id="exampleInputPassword1"
+                      onChange={onChangeAmount}
                     />
                   </div>
                   <div class="form-group">
@@ -71,6 +79,7 @@ const ModalCreate = ({
                       type="text"
                       className="form-control finance__form"
                       id="description"
+                      onChange={onChangeDescription}
                     />
                   </div>
                 </div>
@@ -82,12 +91,16 @@ const ModalCreate = ({
                   type="success"
                   size="lg"
                   className="rounded-pill mt-5 finance__buttonCustom2"
+                  onClick={onClick}
                 >
                   Simpan
                 </Button>
               </div>
               <div className="col">
                 <Button
+                  className="close"
+                  dataDismiss="modal"
+                  ariaLable="Close"
                   size="lg"
                   block="block"
                   className="rounded-pill mt-5 finance__buttonCustom3"

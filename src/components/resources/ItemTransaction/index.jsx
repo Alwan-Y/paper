@@ -7,7 +7,9 @@ const ItemTransaction = ({
   refrence,
   amount,
   dataToggleEdit,
-  dataTargetEdit
+  dataTargetEdit,
+  dataToggleDelete,
+  dataTargetDelete,
 }) => {
   return (
     <div className="row text-left ml-5 mt-2 finance__item">
@@ -28,13 +30,19 @@ const ItemTransaction = ({
             Action
           </Button>
           <div className="dropdown-menu">
-            <Button className="dropdown-item">
-              View
-            </Button>
-            <Button className="dropdown-item" dataToggle={dataToggleEdit} dataTarget={dataTargetEdit}>
+            <Button className="dropdown-item">View</Button>
+            <Button
+              className="dropdown-item"
+              dataToggle={dataToggleEdit}
+              dataTarget={dataTargetEdit}
+            >
               Edit
             </Button>
-            <Button className="dropdown-item" >
+            <Button
+              className="dropdown-item"
+              dataToggle={dataToggleDelete}
+              dataTarget={dataTargetDelete}
+            >
               Delete
             </Button>
           </div>

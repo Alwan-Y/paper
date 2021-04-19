@@ -38,6 +38,13 @@
     color: #3f5468;
   }
 
+  &__heading3 {
+    font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: #3f5468;
+  }
+
   &__button {
     color: white;
     font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -78,16 +85,47 @@
     margin-top: -40px;
   }
 
+  &__marginCustom2 {
+    margin-top: 150px;
+  }
+
   &__buttonCustom2 {
     color: white;
     width: 50%;
-    margin-left: 150px;
+    margin-left: -10px;
   }
 
   &__buttonCustom3 {
     color: black;
     width: 50%;
+    margin-left: 150px;
+    border: 5px solid black;
+  }
+
+  &__buttonCustom5 {
+    margin-top: 100000px;
+    color: black;
+    width: 50%;
     border: 5px solid black;
     margin-left: -10px;
+  }
+
+  &__buttonCustom4 {
+    color: white;
+    width: 50%;
+    margin-left: 150px;
+  }
+
+  &__heading6 {
+    font-family: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: black;
+    
+  }
+
+  @include background('../images/index/empety.png', bottom);
+
+  &__backgroundModalDelete {
+    background-color: white !important;
   }
 }

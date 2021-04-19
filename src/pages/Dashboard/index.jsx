@@ -12,6 +12,7 @@ import Pagination from 'components/resources/Pagination';
 import DescriptionTransaction from 'components/resources/DescriptionTransaction';
 import ItemTransaction from 'components/resources/ItemTransaction';
 import ModalCreate from 'components/commons/ModalCreate';
+import ModalDelete from 'components/commons/ModelDelete';
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
@@ -179,6 +180,8 @@ const Dashboard = () => {
             amount="Example"
             dataToggleEdit="modal"
             dataTargetEdit="#editFinance"
+            dataToggleDelete="modal"
+            dataTargetDelete="#deleteFinance"
           />
           <ItemTransaction
             transactionDate="Example"
@@ -186,6 +189,10 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
+            dataToggleEdit="modal"
+            dataTargetEdit="#editFinance"
+            dataToggleDelete="modal"
+            dataTargetDelete="#deleteFinance"
           />
           <ItemTransaction
             transactionDate="Example"
@@ -193,16 +200,51 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
+            dataToggleEdit="modal"
+            dataTargetEdit="#editFinance"
+            dataToggleDelete="modal"
+            dataTargetDelete="#deleteFinance"
           />
           <Pagination />
-          <ModalCreate 
-          target="createNewFinance"
-          heading="Create New Finance"
+          <ModalCreate
+            target="createNewFinance"
+            heading="Create New Finance"
+            onClick={() => {
+              console.log('oke');
+            }}
+            onChangeFinanceName={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeFinanceAccount={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeAmount={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeDescription={(e) => {
+              console.log(e.target.value);
+            }}
           />
-          <ModalCreate 
-          target="editFinance"
-          heading="Edit Finance"
+          <ModalCreate
+            target="editFinance"
+            heading="Edit Finance"
+            onClick={() => {
+              console.log('oke');
+            }}
+            onChangeFinanceName={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeFinanceAccount={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeAmount={(e) => {
+              console.log(e.target.value);
+            }}
+            onChangeDescription={(e) => {
+              console.log(e.target.value);
+            }}
           />
+          <ModalDelete target="deleteFinance" heading="Delete Finance" />
         </div>
       </div>
     </div>
