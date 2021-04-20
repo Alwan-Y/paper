@@ -1,6 +1,13 @@
 import Button from 'components/commons/Button';
 
-const ItemAccount = ({ accountName, description, accountType }) => {
+const ItemAccount = ({ 
+  accountName, 
+  description, 
+  accountType,
+  dataTargetView,
+  dataTargetEdit,
+  dataTargetDelete,
+}) => {
   return (
     <div className="row text-left ml-5 mt-2 finance__item">
       <div className="col finance__choicePage mt-3">{accountName}</div>
@@ -18,15 +25,25 @@ const ItemAccount = ({ accountName, description, accountType }) => {
             Action
           </Button>
           <div className="dropdown-menu">
-            <p className="dropdown-item" href="#">
+            <Button 
+            className="dropdown-item"
+            dataToggle="modal"
+            dataTarget={dataTargetView}
+            >
               View
-            </p>
-            <p className="dropdown-item" href="#">
+            </Button>
+            <Button 
+            className="dropdown-item"
+            dataToggle="modal"
+            dataTarget={dataTargetEdit}>
               Edit
-            </p>
-            <p className="dropdown-item" href="#">
+            </Button>
+            <Button 
+            className="dropdown-item"
+            dataToggle="modal"
+            dataTarget={dataTargetDelete}>
               Delete
-            </p>
+            </Button>
           </div>
         </div>
       </div>

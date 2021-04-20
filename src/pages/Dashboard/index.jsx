@@ -13,11 +13,12 @@ import DescriptionTransaction from 'components/resources/DescriptionTransaction'
 import ItemTransaction from 'components/resources/ItemTransaction';
 import ModalCreate from 'components/commons/ModalCreate';
 import ModalDelete from 'components/commons/ModelDelete';
+import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
   const [page, setPage] = useState(false);
-  const [financePage, setFinancePage] = useState(false);
+  const [financePage, setFinancePage] = useState(true);
 
   if (page) {
     return (
@@ -108,6 +109,8 @@ const Dashboard = () => {
                     type="info"
                     size="lg"
                     className="rounded-pill mt-4 finance__button"
+                    dataToggle="modal"
+                    dataTarget="#createNewAccount"
                   >
                     Create New Account
                   </Button>
@@ -119,18 +122,44 @@ const Dashboard = () => {
               accountName="Example"
               description="Example"
               accountType="Example"
+              dataTargetView="#viewAccount"
+              dataTargetEdit="#editAccount"
+              dataTargetDelete="#deleteAccount"
             />
             <ItemAccount
               accountName="Example"
               description="Example"
               accountType="Example"
+              dataTargetView="#viewAccount"
+              dataTargetEdit="#editAccount"
+              dataTargetDelete="#deleteAccount"
             />
             <ItemAccount
               accountName="Example"
               description="Example"
               accountType="Example"
+              dataTargetView="#viewAccount"
+              dataTargetEdit="#editAccount"
+              dataTargetDelete="#deleteAccount"
             />
             <Pagination />
+            <ModalCreateAccount 
+            target="createNewAccount"
+            heading="Create New Account"
+          />
+          <ModalCreateAccount 
+            target="editAccount"
+            heading="Edit Account"
+          />
+            <ModalCreateAccount 
+            target="viewAccount"
+            heading="View Account"
+            readOnly="readOnly"
+            valueAccountName="Example"
+            valueTypeAccount="Example"
+            valueDescription="Example"
+          />
+          <ModalDelete target="deleteAccount" heading="Delete Account" />
           </div>
         </div>
       </div>
