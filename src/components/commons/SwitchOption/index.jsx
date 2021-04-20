@@ -1,4 +1,4 @@
-const SwitchOption = ({ truee, falsee }) => {
+const SwitchOption = ({ truee, onClickFinance, onClickAccount }) => {
   if (truee) {
     return (
       <div className="row finance__margin">
@@ -7,7 +7,9 @@ const SwitchOption = ({ truee, falsee }) => {
           <div className="finance__border"></div>
         </div>
         <div className="col-2">
-          <h6 className="finance__choicePage">Transaction</h6>
+          <h6 className="finance__choicePage" onClick={onClickFinance}>
+            Transaction
+          </h6>
         </div>
       </div>
     );
@@ -15,7 +17,9 @@ const SwitchOption = ({ truee, falsee }) => {
   return (
     <div className="row finance__margin">
       <div className="col-2">
-        <h6 className="finance__choicePage">Account</h6>
+        <h6 className="finance__choicePage" onClick={onClickAccount}>
+          Account
+        </h6>
       </div>
       <div className="col-2">
         <h6 className="finance__choicePage">Transaction</h6>

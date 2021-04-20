@@ -1,4 +1,7 @@
 import Button from 'components/commons/Button';
+import view from 'assets/images/index/eye.png';
+import edit from 'assets/images/index/draw.png';
+import trash from 'assets/images/index/trash.png';
 
 const ItemAccount = ({
   accountName,
@@ -30,21 +33,21 @@ const ItemAccount = ({
               dataToggle="modal"
               dataTarget={dataTargetView}
             >
-              View
+              <img src={view} alt="view" /> View
             </Button>
             <Button
               className="dropdown-item"
               dataToggle="modal"
               dataTarget={dataTargetEdit}
             >
-              Edit
+              <img src={edit} alt="edit" /> Edit
             </Button>
             <Button
               className="dropdown-item"
               dataToggle="modal"
               dataTarget={dataTargetDelete}
             >
-              Delete
+              <img src={trash} alt="trash" /> Delete
             </Button>
           </div>
         </div>

@@ -17,15 +17,19 @@ import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
-  const [page, setPage] = useState(false);
-  const [financePage, setFinancePage] = useState(false);
+  const [page, setPage] = useState(true);
+  const [financePage, setFinancePage] = useState(true);
 
   if (page) {
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-            <SideBar />
+            <SideBar
+              onClickFinance={() => {
+                setPage(false);
+              }}
+            />
           </div>
           <div className="col-8 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
             <div className="row">
@@ -87,10 +91,19 @@ const Dashboard = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-            <SideBar />
+            <SideBar
+              onClickDashboard={() => {
+                setPage(true);
+              }}
+            />
           </div>
           <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <SwitchOption truee="true" />
+            <SwitchOption
+              truee="true"
+              onClickFinance={() => {
+                setFinancePage(false);
+              }}
+            />
             <hr className="finance__hr" />
             <div className="row">
               <div className="col text-left">
@@ -167,10 +180,18 @@ const Dashboard = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-          <SideBar />
+          <SideBar
+            onClickDashboard={() => {
+              setPage(true);
+            }}
+          />
         </div>
         <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-          <SwitchOption falsee="false" />
+          <SwitchOption
+            onClickAccount={() => {
+              setFinancePage(true);
+            }}
+          />
           <hr className="finance__hr" />
           <div className="row">
             <div className="col text-left">
