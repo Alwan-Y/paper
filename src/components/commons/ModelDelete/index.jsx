@@ -16,7 +16,7 @@ const ModalDelete = ({
     <div
       className="modal fade"
       id={target}
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
@@ -27,7 +27,7 @@ const ModalDelete = ({
       >
         <div className="modal-content finance__backgroundModalDelete jumbotron3 jumbotron3-fluid finance finance--background">
           <div className="modal-body">
-            <Button className="close" dataDismiss="modal" ariaLable="Close">
+            <Button className="close" dataDismiss="modal" >
               <span aria-hidden="true">&times;</span>
             </Button>
             <div className="row mt-3">
@@ -47,7 +47,6 @@ const ModalDelete = ({
                   size="lg"
                   className="rounded-pill mt-5 finance__buttonCustom3"
                   dataDismiss="modal"
-                  ariaLable="Close"
                 >
                   Cancel
                 </Button>

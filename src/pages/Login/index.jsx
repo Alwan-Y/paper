@@ -22,7 +22,8 @@ const Login = () => {
       return alert('Ups email / password wrong');
     }
 
-    localStorage.setItem('last_login', data.last_login);
+    localStorage.setItem('login', data.last_login);
+    localStorage.setItem('username', email)
     localStorage.setItem('name', data.name);
     localStorage.setItem('token', data.token);
 

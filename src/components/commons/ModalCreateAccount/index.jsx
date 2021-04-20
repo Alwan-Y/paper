@@ -18,7 +18,7 @@ const ModalCreateAccount = ({
     <div
       className="modal fade"
       id={target}
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
@@ -29,7 +29,7 @@ const ModalCreateAccount = ({
       >
         <div className="modal-content finance__backgroundModal jumbotron3 jumbotron3-fluid login login--background">
           <div className="modal-body">
-            <Button className="close" dataDismiss="modal" ariaLable="Close">
+            <Button className="close" dataDismiss="modal" >
               <span aria-hidden="true">&times;</span>
             </Button>
             <div className="row text-left ml-5 mt-4">
@@ -47,7 +47,7 @@ const ModalCreateAccount = ({
             <div className="row mt-5">
               <div className="col-10 text-left ml-5">
                 <div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label>Account Name</label>
                     <Input
                       type="text"
@@ -59,7 +59,7 @@ const ModalCreateAccount = ({
                       readOnly={readOnly}
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label>Type</label>
                     <Input
                       type="text"
@@ -71,7 +71,7 @@ const ModalCreateAccount = ({
                       readOnly={readOnly}
                     />
                   </div>
-                  <div class="form-group">
+                  <div className="form-group">
                     <label>Description</label>
                     <Input
                       type="text"
@@ -100,7 +100,6 @@ const ModalCreateAccount = ({
                 <Button
                   className="close"
                   dataDismiss="modal"
-                  ariaLable="Close"
                   size="lg"
                   block="block"
                   className="rounded-pill mt-5 finance__buttonCustom5"

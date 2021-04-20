@@ -3,19 +3,19 @@ import search from 'assets/images/index/loupe.png';
 const Search = ({ placeholder, onClick }) => {
   return (
     <div>
-      <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
-        <div class="input-group">
+      <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+        <div className="input-group">
           <input
             type="search"
             placeholder={placeholder}
             aria-describedby="button-addon1"
-            class="form-control border-0 bg-light"
+            className="form-control border-0 bg-light"
           />
-          <div class="input-group-append">
+          <div className="input-group-append">
             <button
               id="button-addon1"
               type="submit"
-              class="btn btn-link text-primary"
+              className="btn btn-link text-primary"
               onClick={onClick}
             >
               <img src={search} alt="" />

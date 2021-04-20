@@ -2,6 +2,8 @@ import Button from 'components/commons/Button';
 import view from 'assets/images/index/eye.png';
 import edit from 'assets/images/index/draw.png';
 import trash from 'assets/images/index/trash.png';
+import ModalCreateAccount from 'components/commons/ModalCreateAccount'
+import ModalDelete from 'components/commons/ModelDelete'
 
 const ItemAccount = ({
   accountName,
@@ -10,6 +12,10 @@ const ItemAccount = ({
   dataTargetView,
   dataTargetEdit,
   dataTargetDelete,
+  viewAccountName,
+  viewAccountType,
+  viewAccountDescription,
+  idx
 }) => {
   return (
     <div className="row text-left ml-5 mt-2 finance__item">
@@ -52,6 +58,16 @@ const ItemAccount = ({
           </div>
         </div>
       </div>
+      <ModalCreateAccount target="editAccount" heading="Edit Account" />
+      <ModalCreateAccount
+              target={"viewAccount"}
+              heading="View Account"
+              readOnly="readOnly"
+              valueAccountName={viewAccountName}
+              valueTypeAccount={viewAccountType}
+              valueDescription={viewAccountDescription}
+            />
+      <ModalDelete target="deleteAccount" heading="Delete Account" />
     </div>
   );
 };

@@ -14,11 +14,43 @@ import ItemTransaction from 'components/resources/ItemTransaction';
 import ModalCreate from 'components/commons/ModalCreate';
 import ModalDelete from 'components/commons/ModelDelete';
 import ModalCreateAccount from 'components/commons/ModalCreateAccount';
+import API from 'services';
 
 const Dashboard = () => {
-  // const [chartData, setChartData] = useState({})
+  const [update, setUpdate] = useState(0)
+  const [username, setUsername] = useState("")
+  const [name, setName] = useState("")
+  const [lastLogin, setLastLogin] = useState("")
+  const [allAccount, setAllAccount] = useState([])
+  const [accountName, setAccountName] = useState("")
+  const [accountType, setAccountType] = useState("")
+  const [accountDescription, setAccountDescription] = useState("") 
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
+
+  const getDetailLogin = () => {
+    setUsername(localStorage.getItem("username"))
+    setName(localStorage.getItem("name"))
+    setLastLogin(localStorage.getItem("login"))
+  }
+
+  const getAllAccount = async () => {
+    const allAccount = await API.getAllAccount()
+    setAllAccount(allAccount.data)
+  }
+
+  const addAccount = async () => {
+    const addAccount = await API.addAccount(accountName, accountType, accountDescription)
+  }
+
+  useEffect(() => {
+    getDetailLogin()
+    getAllAccount()
+  }, [])
+
+  useEffect(() => {
+    getAllAccount()
+  }, [update])
 
   if (page) {
     return (
@@ -79,7 +111,11 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <Dropdown />
+            <Dropdown 
+            username={username}
+            name={name}
+            lastLogin={lastLogin}
+            />
           </div>
         </div>
       </div>
@@ -98,6 +134,12 @@ const Dashboard = () => {
             />
           </div>
           <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
+            <Dropdown 
+            className="finance__dropdown"
+            username={username}
+            name={name}
+            lastLogin={lastLogin}
+            />
             <SwitchOption
               truee="true"
               onClickFinance={() => {
@@ -131,45 +173,40 @@ const Dashboard = () => {
               </div>
             </div>
             <DescriptionAccount />
-            <ItemAccount
-              accountName="Example"
-              description="Example"
-              accountType="Example"
-              dataTargetView="#viewAccount"
-              dataTargetEdit="#editAccount"
-              dataTargetDelete="#deleteAccount"
-            />
-            <ItemAccount
-              accountName="Example"
-              description="Example"
-              accountType="Example"
-              dataTargetView="#viewAccount"
-              dataTargetEdit="#editAccount"
-              dataTargetDelete="#deleteAccount"
-            />
-            <ItemAccount
-              accountName="Example"
-              description="Example"
-              accountType="Example"
-              dataTargetView="#viewAccount"
-              dataTargetEdit="#editAccount"
-              dataTargetDelete="#deleteAccount"
-            />
+            {allAccount ? allAccount.map((account, idx) => {
+              return (
+                <ItemAccount
+                key={idx}
+                accountName={account.name}
+                description={account.description}
+                accountType={account.type}
+                dataTargetView="#viewAccount"
+                dataTargetEdit="#editAccount"
+                dataTargetDelete="#deleteAccount"
+                viewAccountName={account.name}
+                viewAccountType={account.type}
+                viewAccountDescription={account.description}
+              />
+              )
+            }) : null}
             <Pagination />
             <ModalCreateAccount
               target="createNewAccount"
               heading="Create New Account"
+              onChangeAccountName={(e) => {
+                setAccountName(e.target.value)
+              }}
+              onChangeTypeAccount={(e) => {
+                setAccountType(e.target.value)
+              }}
+              onChangeDescription={(e) => {
+                setAccountDescription(e.target.value)
+              }}
+              onClick={() => {
+                addAccount()
+                setUpdate(update + 1)
+              }}
             />
-            <ModalCreateAccount target="editAccount" heading="Edit Account" />
-            <ModalCreateAccount
-              target="viewAccount"
-              heading="View Account"
-              readOnly="readOnly"
-              valueAccountName="Example"
-              valueTypeAccount="Example"
-              valueDescription="Example"
-            />
-            <ModalDelete target="deleteAccount" heading="Delete Account" />
           </div>
         </div>
       </div>
@@ -187,6 +224,12 @@ const Dashboard = () => {
           />
         </div>
         <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
+          <Dropdown 
+            className="finance__dropdown"
+            username={username}
+            name={name}
+            lastLogin={lastLogin}
+          />
           <SwitchOption
             onClickAccount={() => {
               setFinancePage(true);

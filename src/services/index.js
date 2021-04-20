@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseURL = 'https://development.paper.id:3500/test-case';
+const baseLocalTesting = "http://localhost:3001"
 
 class API {
   static login = async (username, password) => {
@@ -15,6 +16,30 @@ class API {
       return e;
     }
   };
+
+  static getAllAccount = async () => {
+    try {
+      const getAllAcount = await axios.get(`${baseLocalTesting}/api/v1/account`)
+
+      return getAllAcount
+    } catch (e) {
+      return e
+    }
+  }
+  
+  static addAccount = async (accountName, accountType, accountDescription) => {
+    try {
+      const addAccount = await axios.post(`${baseLocalTesting}/api/v1/account`, {
+        name: accountName,
+        type: accountType,
+        description: accountDescription
+      })
+
+      return addAccount
+    } catch (e) {
+      return e
+    }
+  }
 }
 
 export default API;
