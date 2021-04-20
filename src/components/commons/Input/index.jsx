@@ -1,4 +1,12 @@
-const Input = ({ type, id, placeholder, value, onChange, className,readOnly }) => (
+const Input = ({
+  type,
+  id,
+  placeholder,
+  value,
+  onChange,
+  className,
+  readOnly,
+}) => (
   <div className="form-group">
     <input
       type={type}

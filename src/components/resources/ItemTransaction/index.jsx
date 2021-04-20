@@ -6,9 +6,8 @@ const ItemTransaction = ({
   financeAccountName,
   refrence,
   amount,
-  dataToggleEdit,
+  dataTargetView,
   dataTargetEdit,
-  dataToggleDelete,
   dataTargetDelete,
 }) => {
   return (
@@ -30,17 +29,23 @@ const ItemTransaction = ({
             Action
           </Button>
           <div className="dropdown-menu">
-            <Button className="dropdown-item">View</Button>
             <Button
               className="dropdown-item"
-              dataToggle={dataToggleEdit}
+              dataToggle="modal"
+              dataTarget={dataTargetView}
+            >
+              View
+            </Button>
+            <Button
+              className="dropdown-item"
+              dataToggle="modal"
               dataTarget={dataTargetEdit}
             >
               Edit
             </Button>
             <Button
               className="dropdown-item"
-              dataToggle={dataToggleDelete}
+              dataToggle="modal"
               dataTarget={dataTargetDelete}
             >
               Delete

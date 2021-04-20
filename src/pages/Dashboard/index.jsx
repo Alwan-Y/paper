@@ -18,7 +18,7 @@ import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 const Dashboard = () => {
   // const [chartData, setChartData] = useState({})
   const [page, setPage] = useState(false);
-  const [financePage, setFinancePage] = useState(true);
+  const [financePage, setFinancePage] = useState(false);
 
   if (page) {
     return (
@@ -143,23 +143,20 @@ const Dashboard = () => {
               dataTargetDelete="#deleteAccount"
             />
             <Pagination />
-            <ModalCreateAccount 
-            target="createNewAccount"
-            heading="Create New Account"
-          />
-          <ModalCreateAccount 
-            target="editAccount"
-            heading="Edit Account"
-          />
-            <ModalCreateAccount 
-            target="viewAccount"
-            heading="View Account"
-            readOnly="readOnly"
-            valueAccountName="Example"
-            valueTypeAccount="Example"
-            valueDescription="Example"
-          />
-          <ModalDelete target="deleteAccount" heading="Delete Account" />
+            <ModalCreateAccount
+              target="createNewAccount"
+              heading="Create New Account"
+            />
+            <ModalCreateAccount target="editAccount" heading="Edit Account" />
+            <ModalCreateAccount
+              target="viewAccount"
+              heading="View Account"
+              readOnly="readOnly"
+              valueAccountName="Example"
+              valueTypeAccount="Example"
+              valueDescription="Example"
+            />
+            <ModalDelete target="deleteAccount" heading="Delete Account" />
           </div>
         </div>
       </div>
@@ -207,9 +204,8 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
-            dataToggleEdit="modal"
+            dataTargetView="#viewFinance"
             dataTargetEdit="#editFinance"
-            dataToggleDelete="modal"
             dataTargetDelete="#deleteFinance"
           />
           <ItemTransaction
@@ -218,9 +214,8 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
-            dataToggleEdit="modal"
+            dataTargetView="#viewFinance"
             dataTargetEdit="#editFinance"
-            dataToggleDelete="modal"
             dataTargetDelete="#deleteFinance"
           />
           <ItemTransaction
@@ -229,9 +224,8 @@ const Dashboard = () => {
             financeAccountName="Example"
             refrence="Example"
             amount="Example"
-            dataToggleEdit="modal"
+            dataTargetView="#viewFinance"
             dataTargetEdit="#editFinance"
-            dataToggleDelete="modal"
             dataTargetDelete="#deleteFinance"
           />
           <Pagination />
@@ -272,6 +266,18 @@ const Dashboard = () => {
             onChangeDescription={(e) => {
               console.log(e.target.value);
             }}
+          />
+          <ModalCreate
+            target="viewFinance"
+            heading="View Finance"
+            onClick={() => {
+              console.log('oke');
+            }}
+            readOnly="readOnly"
+            valueFinanceName="Example"
+            valueFinanceAccount="Example"
+            valueAmount="Example"
+            valueDescription="Example"
           />
           <ModalDelete target="deleteFinance" heading="Delete Finance" />
         </div>

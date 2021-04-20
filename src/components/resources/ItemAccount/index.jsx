@@ -1,8 +1,8 @@
 import Button from 'components/commons/Button';
 
-const ItemAccount = ({ 
-  accountName, 
-  description, 
+const ItemAccount = ({
+  accountName,
+  description,
   accountType,
   dataTargetView,
   dataTargetEdit,
@@ -25,23 +25,25 @@ const ItemAccount = ({
             Action
           </Button>
           <div className="dropdown-menu">
-            <Button 
-            className="dropdown-item"
-            dataToggle="modal"
-            dataTarget={dataTargetView}
+            <Button
+              className="dropdown-item"
+              dataToggle="modal"
+              dataTarget={dataTargetView}
             >
               View
             </Button>
-            <Button 
-            className="dropdown-item"
-            dataToggle="modal"
-            dataTarget={dataTargetEdit}>
+            <Button
+              className="dropdown-item"
+              dataToggle="modal"
+              dataTarget={dataTargetEdit}
+            >
               Edit
             </Button>
-            <Button 
-            className="dropdown-item"
-            dataToggle="modal"
-            dataTarget={dataTargetDelete}>
+            <Button
+              className="dropdown-item"
+              dataToggle="modal"
+              dataTarget={dataTargetDelete}
+            >
               Delete
             </Button>
           </div>

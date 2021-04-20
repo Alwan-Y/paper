@@ -32,18 +32,12 @@ const ModalDelete = ({
             </Button>
             <div className="row mt-3">
               <div className="col text-center mt-3">
-                <Heading1 className="finance__heading3 ">
-                  {heading}
-                </Heading1>
+                <Heading1 className="finance__heading3 ">{heading}</Heading1>
               </div>
             </div>
             <div className="row mt-3">
               <div className="col text-center">
-                  <Heading6 
-                  className="finance__heading6"
-                  >
-                    Are you sure?
-                  </Heading6>
+                <Heading6 className="finance__heading6">Are you sure?</Heading6>
               </div>
             </div>
             <div className="row mt-5"></div>

@@ -10,6 +10,11 @@ const ModalCreate = ({
   onChangeFinanceAccount,
   onChangeAmount,
   onChangeDescription,
+  valueFinanceName,
+  valueFinanceAccount,
+  valueAmount,
+  valueDescription,
+  readOnly,
 }) => {
   return (
     <div
@@ -52,6 +57,8 @@ const ModalCreate = ({
                       id="exampleInputEmail1"
                       placeholder="Input your finance name"
                       onChange={onChangeFinanceName}
+                      value={valueFinanceName}
+                      readOnly={readOnly}
                     />
                   </div>
                   <div class="form-group">
@@ -61,7 +68,9 @@ const ModalCreate = ({
                       className="form-control finance__form"
                       id="exampleInputPassword1"
                       placeholder="Select Finance Account"
+                      value={valueFinanceAccount}
                       onChange={onChangeFinanceAccount}
+                      readOnly={readOnly}
                     />
                   </div>
                   <div class="form-group">
@@ -71,6 +80,8 @@ const ModalCreate = ({
                       className="form-control finance__form"
                       id="exampleInputPassword1"
                       onChange={onChangeAmount}
+                      value={valueAmount}
+                      readOnly={readOnly}
                     />
                   </div>
                   <div class="form-group">
@@ -80,6 +91,8 @@ const ModalCreate = ({
                       className="form-control finance__form"
                       id="description"
                       onChange={onChangeDescription}
+                      value={valueDescription}
+                      readOnly={readOnly}
                     />
                   </div>
                 </div>
