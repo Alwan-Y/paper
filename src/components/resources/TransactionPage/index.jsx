@@ -217,9 +217,6 @@ const TransactionPage = ({
           <ModalCreate
             target="viewFinance"
             heading="View Finance"
-            onClick={() => {
-              console.log('oke');
-            }}
             readOnly="readOnly"
             valueFinanceName={modalViewTransaction.title}
             valueFinanceAccount={modalViewTransaction.finance_account_name}
