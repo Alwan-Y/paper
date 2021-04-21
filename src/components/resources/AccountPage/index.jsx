@@ -18,6 +18,7 @@ const AccountPage = ({
   name,
   lastLogin,
   onClickSetFinancePage,
+  onClickLogout
 }) => {
   const [update, setUpdate] = useState(0);
   const [allAccount, setAllAccount] = useState([]);
@@ -26,6 +27,7 @@ const AccountPage = ({
   const [accountName, setAccountName] = useState('');
   const [accountType, setAccountType] = useState('');
   const [accountDescription, setAccountDescription] = useState('');
+  const [paginationTotal, setPaginationTotal] = useState(1)
 
   const setNullVariable = () => {
     setAccountName('');
@@ -95,6 +97,7 @@ const AccountPage = ({
             username={username}
             name={name}
             lastLogin={lastLogin}
+            onClickLogout={onClickLogout}
           />
           <SwitchOption truee="true" onClickFinance={onClickSetFinancePage} />
           <hr className="finance__hr" />
@@ -143,7 +146,29 @@ const AccountPage = ({
                 );
               })
             : null}
-          <Pagination />
+          <Pagination 
+          onClickDoubleLeft={() => {
+            if (paginationTotal && paginationTotal <= 10) {
+              return setPaginationTotal(1)
+            }
+
+            setPaginationTotal(paginationTotal - 10)
+          }}
+          onClickLeft={() => {
+            if (paginationTotal && paginationTotal <= 1) {
+              return setPaginationTotal(1)
+            }
+
+            setPaginationTotal(paginationTotal - 1)
+          }}
+          onClickRight={() => {
+            setPaginationTotal(paginationTotal + 1)
+          }}
+          onClickDoubleRight={() => {
+            setPaginationTotal(paginationTotal + 10)
+          }}
+          total={paginationTotal}
+          />
           <ModalCreateAccount
             target="createNewAccount"
             heading="Create New Account"

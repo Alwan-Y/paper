@@ -18,6 +18,7 @@ const TransactionPage = ({
   username,
   name,
   lastLogin,
+  onClickLogout
 }) => {
   const [update, setUpdate] = useState(0);
   const [allTransaction, setAllTransaction] = useState([]);
@@ -27,6 +28,7 @@ const TransactionPage = ({
   const [transactionAmmount, setTransactionAmount] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [modalViewTransaction, setModalViewTransaction] = useState({});
+  const [paginationTotal, setPaginationTotal] = useState(1)
 
   const setNullVariable = () => {
     setTransactionName('');
@@ -99,6 +101,7 @@ const TransactionPage = ({
             username={username}
             name={name}
             lastLogin={lastLogin}
+            onClickLogout={onClickLogout}
           />
           <SwitchOption onClickAccount={onClickSetFinancePage} />
           <hr className="finance__hr" />
@@ -149,7 +152,29 @@ const TransactionPage = ({
                 );
               })
             : null}
-          <Pagination />
+          <Pagination 
+          onClickDoubleLeft={() => {
+            if (paginationTotal && paginationTotal <= 10) {
+              return setPaginationTotal(1)
+            }
+
+            setPaginationTotal(paginationTotal - 10)
+          }}
+          onClickLeft={() => {
+            if (paginationTotal && paginationTotal <= 1) {
+              return setPaginationTotal(1)
+            }
+
+            setPaginationTotal(paginationTotal - 1)
+          }}
+          onClickRight={() => {
+            setPaginationTotal(paginationTotal + 1)
+          }}
+          onClickDoubleRight={() => {
+            setPaginationTotal(paginationTotal + 10)
+          }}
+          total={paginationTotal}
+          />
           <ModalCreate
             target="createNewFinance"
             heading="Create New Finance"

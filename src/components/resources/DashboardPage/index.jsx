@@ -2,7 +2,7 @@ import SideBar from 'components/resources/SideBar';
 import Chart from 'components/resources/Chart';
 import Dropdown from 'components/commons/Dropdown';
 
-const DashboardPage = ({ onClickFinance, username, name, lastLogin }) => {
+const DashboardPage = ({ onClickFinance, username, name, lastLogin, onClickLogout }) => {
   return (
     <div className="container-fluid">
       <div className="row">
@@ -57,7 +57,11 @@ const DashboardPage = ({ onClickFinance, username, name, lastLogin }) => {
           </div>
         </div>
         <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-          <Dropdown username={username} name={name} lastLogin={lastLogin} />
+          <Dropdown 
+          username={username} 
+          name={name} 
+          lastLogin={lastLogin} 
+          onClickLogout={onClickLogout}/>
         </div>
       </div>
     </div>

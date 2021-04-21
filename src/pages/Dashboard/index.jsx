@@ -1,14 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import DashboardPage from 'components/resources/DashboardPage';
 import AccountPage from 'components/resources/AccountPage';
 import TransactionPage from 'components/resources/TransactionPage';
+import ROUTES from 'configs/routes';
 
 const Dashboard = () => {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [lastLogin, setLastLogin] = useState('');
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
+
+  const logout = () => {
+    localStorage.removeItem("login"); 
+    localStorage.removeItem("username"); 
+    localStorage.removeItem("name"); 
+    localStorage.removeItem("token"); 
+
+    alert("Succes logout~")
+
+    history.push(ROUTES.ROOT);
+  }
 
   const getDetailLogin = () => {
     setUsername(localStorage.getItem('username'));
@@ -29,6 +43,9 @@ const Dashboard = () => {
         username={username}
         name={name}
         lastLogin={lastLogin}
+        onClickLogout={() => {
+          logout()
+        }}
       />
     );
   }
@@ -44,6 +61,9 @@ const Dashboard = () => {
         }}
         onClickSetFinancePage={() => {
           setFinancePage(false);
+        }}
+        onClickLogout={() => {
+          logout()
         }}
       />
     );
@@ -61,6 +81,9 @@ const Dashboard = () => {
       username={username}
       name={name}
       lastLogin={lastLogin}
+      onClickLogout={() => {
+        logout()
+      }}
     />
   );
 };
