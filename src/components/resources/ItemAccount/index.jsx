@@ -10,7 +10,7 @@ const ItemAccount = ({
   dataTargetView,
   dataTargetEdit,
   dataTargetDelete,
-  onClick
+  onClick,
 }) => {
   return (
     <div className="row text-left ml-5 mt-2 finance__item">

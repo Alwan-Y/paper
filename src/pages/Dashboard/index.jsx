@@ -25,8 +25,8 @@ const Dashboard = () => {
   const [accountName, setAccountName] = useState('');
   const [accountType, setAccountType] = useState('');
   const [accountDescription, setAccountDescription] = useState('');
-  const [modalViewData, setModalViewData] = useState({})
-  const [accountId, setAccountId] = useState('')
+  const [modalViewData, setModalViewData] = useState({});
+  const [accountId, setAccountId] = useState('');
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
 
@@ -50,36 +50,41 @@ const Dashboard = () => {
 
     setUpdate(update + 1);
 
-    setAccountName('')
-    setAccountType('')
-    setAccountDescription('')
+    setAccountName('');
+    setAccountType('');
+    setAccountDescription('');
 
-    alert("Succes add account")
+    alert('Succes add account');
   };
 
   const updateAccount = async () => {
-    const updateAccount = await API.updateAccount(accountName, accountType, accountDescription, accountId)
+    const updateAccount = await API.updateAccount(
+      accountName,
+      accountType,
+      accountDescription,
+      accountId
+    );
 
-    if(!updateAccount) {
-      return alert("something error")
+    if (!updateAccount) {
+      return alert('something error');
     }
 
-    setAccountName('')
-    setAccountType('')
-    setAccountDescription('')
+    setAccountName('');
+    setAccountType('');
+    setAccountDescription('');
 
-    setUpdate(update + 1)
+    setUpdate(update + 1);
 
-    alert("Succes update account")
-  }
+    alert('Succes update account');
+  };
 
   const deleteAccount = async () => {
-    const deleteAccount = await API.deleteAccount(accountId)
+    const deleteAccount = await API.deleteAccount(accountId);
 
-    setUpdate(update + 1)
+    setUpdate(update + 1);
 
-    alert("Succes delete account")
-  }
+    alert('Succes delete account');
+  };
 
   useEffect(() => {
     getDetailLogin();
@@ -218,8 +223,8 @@ const Dashboard = () => {
                       dataTargetEdit="#editAccount"
                       dataTargetDelete="#deleteAccount"
                       onClick={() => {
-                        setAccountId(account.finance_account_id)
-                        setModalViewData(account)
+                        setAccountId(account.finance_account_id);
+                        setModalViewData(account);
                       }}
                     />
                   );
@@ -242,22 +247,22 @@ const Dashboard = () => {
                 addAccount();
               }}
             />
-            <ModalCreateAccount 
-            target="editAccount" 
-            heading="Edit Account" 
-            onChangeAccountName={(e) => {
-              setAccountName(e.target.value);
-            }}
-            onChangeTypeAccount={(e) => {
-              setAccountType(e.target.value);
-            }}
-            onChangeDescription={(e) => {
-              setAccountDescription(e.target.value);
-            }}
-            onClick={() => {
-              setAccountId(modalViewData.finance_account_id)
-              updateAccount();
-            }}
+            <ModalCreateAccount
+              target="editAccount"
+              heading="Edit Account"
+              onChangeAccountName={(e) => {
+                setAccountName(e.target.value);
+              }}
+              onChangeTypeAccount={(e) => {
+                setAccountType(e.target.value);
+              }}
+              onChangeDescription={(e) => {
+                setAccountDescription(e.target.value);
+              }}
+              onClick={() => {
+                setAccountId(modalViewData.finance_account_id);
+                updateAccount();
+              }}
             />
             <ModalCreateAccount
               target="viewAccount"
@@ -267,13 +272,13 @@ const Dashboard = () => {
               valueTypeAccount={modalViewData.type}
               valueDescription={modalViewData.description}
             />
-            <ModalDelete 
-            target="deleteAccount" 
-            heading={modalViewData.name} 
-            onClick={() => {
-              setAccountId(modalViewData.finance_account_id)
-              deleteAccount()
-            }}
+            <ModalDelete
+              target="deleteAccount"
+              heading={modalViewData.name}
+              onClick={() => {
+                setAccountId(modalViewData.finance_account_id);
+                deleteAccount();
+              }}
             />
           </div>
         </div>

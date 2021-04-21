@@ -3,11 +3,7 @@ import Button from 'components/commons/Button';
 import Heading1 from 'components/commons/Heading1';
 import Heading6 from '../Heading6';
 
-const ModalDelete = ({
-  heading,
-  target,
-  onClick,
-}) => {
+const ModalDelete = ({ heading, target, onClick }) => {
   return (
     <div
       className="modal fade"
@@ -28,7 +24,9 @@ const ModalDelete = ({
             </Button>
             <div className="row mt-3">
               <div className="col text-center mt-3">
-                <Heading1 className="finance__heading3 ">Delete {heading} </Heading1>
+                <Heading1 className="finance__heading3 ">
+                  Delete {heading}{' '}
+                </Heading1>
               </div>
             </div>
             <div className="row mt-3">

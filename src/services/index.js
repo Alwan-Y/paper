@@ -46,30 +46,39 @@ class API {
     }
   };
 
-  static updateAccount = async (accountName, accountType, accountDescription, accountID) => {
+  static updateAccount = async (
+    accountName,
+    accountType,
+    accountDescription,
+    accountID
+  ) => {
     try {
+      const updateAccount = await axios.patch(
+        `${baseLocalTesting}/api/v1/account/${accountID}`,
+        {
+          name: accountName,
+          type: accountType,
+          description: accountDescription,
+        }
+      );
 
-      const updateAccount = await axios.patch(`${baseLocalTesting}/api/v1/account/${accountID}`, {
-        name: accountName,
-        type: accountType,
-        description: accountDescription,
-      })
-
-      return updateAccount
+      return updateAccount;
     } catch (e) {
-      return e
+      return e;
     }
-  }
+  };
 
   static deleteAccount = async (accountID) => {
     try {
-      const deleteAccount = await axios.delete(`${baseLocalTesting}/api/v1/account/${accountID}`)
+      const deleteAccount = await axios.delete(
+        `${baseLocalTesting}/api/v1/account/${accountID}`
+      );
 
-      return deleteAccount
+      return deleteAccount;
     } catch (e) {
-      return e
+      return e;
     }
-  }
+  };
 }
 
 export default API;
