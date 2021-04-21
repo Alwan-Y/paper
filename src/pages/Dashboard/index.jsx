@@ -15,6 +15,7 @@ import ModalDelete from 'components/commons/ModelDelete';
 import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 import API from 'services';
 import DashboardPage from 'components/resources/DashboardPage';
+import AccountPage from 'components/resources/AccountPage';
 
 const Dashboard = () => {
   const [update, setUpdate] = useState(0);
@@ -43,10 +44,10 @@ const Dashboard = () => {
     setLastLogin(localStorage.getItem('login'));
   };
 
-  const getAllAccount = async () => {
-    const allAccount = await API.getAllAccount();
-    setAllAccount(allAccount.data);
-  };
+  // const getAllAccount = async () => {
+  //   const allAccount = await API.getAllAccount();
+  //   setAllAccount(allAccount.data);
+  // };
 
   const getAllTransaction = async () => {
     const allTransaction = await API.getAllTransaction();
@@ -152,7 +153,6 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    getAllAccount();
     getAllTransaction();
   }, [update]);
 
@@ -171,127 +171,14 @@ const Dashboard = () => {
 
   if (!page && financePage) {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-            <SideBar
-              onClickDashboard={() => {
-                setPage(true);
-              }}
-            />
-          </div>
-          <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <Dropdown
-              className="finance__dropdown"
-              username={username}
-              name={name}
-              lastLogin={lastLogin}
-            />
-            <SwitchOption
-              truee="true"
-              onClickFinance={() => {
-                setFinancePage(false);
-              }}
-            />
-            <hr className="finance__hr" />
-            <div className="row">
-              <div className="col text-left">
-                <Heading1 className="finance__heading ml-5 mt-5">
-                  All Finance Account
-                </Heading1>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-4 ml-5 mt-4">
-                <Search placeholder="Search" />
-              </div>
-              <div className="col-7 text-right">
-                <p>
-                  <Button
-                    type="info"
-                    size="lg"
-                    className="rounded-pill mt-4 finance__button"
-                    dataToggle="modal"
-                    dataTarget="#createNewAccount"
-                  >
-                    Create New Account
-                  </Button>
-                </p>
-              </div>
-            </div>
-            <DescriptionAccount />
-            {allAccount
-              ? allAccount.map((account, idx) => {
-                  return (
-                    <ItemAccount
-                      key={idx}
-                      accountName={account.name}
-                      description={account.description}
-                      accountType={account.type}
-                      dataTargetView="#viewAccount"
-                      dataTargetEdit="#editAccount"
-                      dataTargetDelete="#deleteAccount"
-                      onClick={() => {
-                        setAccountId(account.finance_account_id);
-                        setModalViewData(account);
-                      }}
-                    />
-                  );
-                })
-              : null}
-            <Pagination />
-            <ModalCreateAccount
-              target="createNewAccount"
-              heading="Create New Account"
-              onChangeAccountName={(e) => {
-                setAccountName(e.target.value);
-              }}
-              onChangeTypeAccount={(e) => {
-                setAccountType(e.target.value);
-              }}
-              onChangeDescription={(e) => {
-                setAccountDescription(e.target.value);
-              }}
-              onClick={() => {
-                addAccount();
-              }}
-            />
-            <ModalCreateAccount
-              target="editAccount"
-              heading="Edit Account"
-              onChangeAccountName={(e) => {
-                setAccountName(e.target.value);
-              }}
-              onChangeTypeAccount={(e) => {
-                setAccountType(e.target.value);
-              }}
-              onChangeDescription={(e) => {
-                setAccountDescription(e.target.value);
-              }}
-              onClick={() => {
-                setAccountId(modalViewData.finance_account_id);
-                updateAccount();
-              }}
-            />
-            <ModalCreateAccount
-              target="viewAccount"
-              heading="View Account"
-              readOnly="readOnly"
-              valueAccountName={modalViewData.name}
-              valueTypeAccount={modalViewData.type}
-              valueDescription={modalViewData.description}
-            />
-            <ModalDelete
-              target="deleteAccount"
-              heading={modalViewData.name}
-              onClick={() => {
-                setAccountId(modalViewData.finance_account_id);
-                deleteAccount();
-              }}
-            />
-          </div>
-        </div>
-      </div>
+      <AccountPage
+        onClickSetPage={() => {
+          setPage(true);
+        }}
+        onClickSetFinancePage={() => {
+          setFinancePage(false);
+        }}
+      />
     );
   }
 
