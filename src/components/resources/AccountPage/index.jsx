@@ -27,6 +27,12 @@ const AccountPage = ({
   const [accountType, setAccountType] = useState('');
   const [accountDescription, setAccountDescription] = useState('');
 
+  const setNullVariable = () => {
+    setAccountName('');
+    setAccountType('');
+    setAccountDescription('');
+  };
+
   const getAllAccount = async () => {
     const allAccount = await API.getAllAccount();
     setAllAccount(allAccount.data);
@@ -41,9 +47,7 @@ const AccountPage = ({
 
     setUpdate(update + 1);
 
-    setAccountName('');
-    setAccountType('');
-    setAccountDescription('');
+    setNullVariable();
 
     alert('Succes add account');
   };
@@ -60,9 +64,7 @@ const AccountPage = ({
       return alert('something error');
     }
 
-    setAccountName('');
-    setAccountType('');
-    setAccountDescription('');
+    setNullVariable();
 
     setUpdate(update + 1);
 
