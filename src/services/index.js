@@ -29,6 +29,18 @@ class API {
     }
   };
 
+  static getAllTransaction = async () => {
+    try {
+      const getAllTransaction = await axios.get(
+        `${baseLocalTesting}/api/v1/finances`
+      );
+
+      return getAllTransaction;
+    } catch (e) {
+      return e;
+    }
+  };
+
   static addAccount = async (accountName, accountType, accountDescription) => {
     try {
       const addAccount = await axios.post(
@@ -41,6 +53,31 @@ class API {
       );
 
       return addAccount;
+    } catch (e) {
+      return e;
+    }
+  };
+
+  static addTransaction = async (
+    transactionName,
+    transactionAccountName,
+    transactionAmount,
+    transactionDescription
+  ) => {
+    try {
+      const addTransaction = await axios.post(
+        `${baseLocalTesting}/api/v1/finances`,
+        {
+          finance_account_type_id: 1,
+          description: transactionDescription,
+          debit_amount: transactionAmount,
+          credit_amount: transactionAmount,
+          title: transactionName,
+          finance_account_name: transactionAccountName,
+        }
+      );
+
+      return addTransaction;
     } catch (e) {
       return e;
     }

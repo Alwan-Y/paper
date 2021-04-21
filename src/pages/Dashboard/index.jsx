@@ -22,11 +22,16 @@ const Dashboard = () => {
   const [name, setName] = useState('');
   const [lastLogin, setLastLogin] = useState('');
   const [allAccount, setAllAccount] = useState([]);
+  const [allTransaction, setAllTransaction] = useState([]);
   const [accountName, setAccountName] = useState('');
   const [accountType, setAccountType] = useState('');
   const [accountDescription, setAccountDescription] = useState('');
   const [modalViewData, setModalViewData] = useState({});
   const [accountId, setAccountId] = useState('');
+  const [transactionName, setTransactionName] = useState('');
+  const [transactionAccountName, setTransactionAccountName] = useState('');
+  const [transactionDescription, setTransactionDescription] = useState('');
+  const [transactionAmmount, setTransactionAmount] = useState('');
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
 
@@ -39,6 +44,11 @@ const Dashboard = () => {
   const getAllAccount = async () => {
     const allAccount = await API.getAllAccount();
     setAllAccount(allAccount.data);
+  };
+
+  const getAllTransaction = async () => {
+    const allTransaction = await API.getAllTransaction();
+    setAllTransaction(allTransaction.data);
   };
 
   const addAccount = async () => {
@@ -55,6 +65,22 @@ const Dashboard = () => {
     setAccountDescription('');
 
     alert('Succes add account');
+  };
+
+  const addTransaction = async () => {
+    const addTransaction = await API.addTransaction(
+      transactionName,
+      transactionAccountName,
+      transactionAmmount,
+      transactionDescription
+    );
+
+    setUpdate(update + 1);
+
+    setTransactionName('');
+    setTransactionAccountName('');
+    setTransactionAmount('');
+    setTransactionDescription('');
   };
 
   const updateAccount = async () => {
@@ -92,7 +118,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     getAllAccount();
+    getAllTransaction();
   }, [update]);
+
+  console.log(allTransaction);
 
   if (page) {
     return (
@@ -335,54 +364,41 @@ const Dashboard = () => {
             </div>
           </div>
           <DescriptionTransaction />
-          <ItemTransaction
-            transactionDate="Example"
-            financeAccount="Example"
-            financeAccountName="Example"
-            refrence="Example"
-            amount="Example"
-            dataTargetView="#viewFinance"
-            dataTargetEdit="#editFinance"
-            dataTargetDelete="#deleteFinance"
-          />
-          <ItemTransaction
-            transactionDate="Example"
-            financeAccount="Example"
-            financeAccountName="Example"
-            refrence="Example"
-            amount="Example"
-            dataTargetView="#viewFinance"
-            dataTargetEdit="#editFinance"
-            dataTargetDelete="#deleteFinance"
-          />
-          <ItemTransaction
-            transactionDate="Example"
-            financeAccount="Example"
-            financeAccountName="Example"
-            refrence="Example"
-            amount="Example"
-            dataTargetView="#viewFinance"
-            dataTargetEdit="#editFinance"
-            dataTargetDelete="#deleteFinance"
-          />
+          {allTransaction
+            ? allTransaction.map((transaction, idx) => {
+                return (
+                  <ItemTransaction
+                    key={idx}
+                    transactionDate="Example"
+                    financeAccount={transaction.title}
+                    financeAccountName={transaction.finance_account_name}
+                    refrence={transaction.description}
+                    amount={transaction.debit_amount}
+                    dataTargetView="#viewFinance"
+                    dataTargetEdit="#editFinance"
+                    dataTargetDelete="#deleteFinance"
+                  />
+                );
+              })
+            : null}
           <Pagination />
           <ModalCreate
             target="createNewFinance"
             heading="Create New Finance"
             onClick={() => {
-              console.log('oke');
+              addTransaction();
             }}
             onChangeFinanceName={(e) => {
-              console.log(e.target.value);
+              setTransactionName(e.target.value);
             }}
             onChangeFinanceAccount={(e) => {
-              console.log(e.target.value);
+              setTransactionAccountName(e.target.value);
             }}
             onChangeAmount={(e) => {
-              console.log(e.target.value);
+              setTransactionAmount(e.target.value);
             }}
             onChangeDescription={(e) => {
-              console.log(e.target.value);
+              setTransactionDescription(e.target.value);
             }}
           />
           <ModalCreate
