@@ -1,11 +1,6 @@
 import userLogo from 'assets/images/index/users.svg';
 
-const Dropdown = ({
-  className,
-  username,
-  name,
-  lastLogin
-}) => {
+const Dropdown = ({ className, username, name, lastLogin }) => {
   return (
     <div className={className}>
       <button

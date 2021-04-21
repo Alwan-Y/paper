@@ -29,7 +29,7 @@ const ModalCreateAccount = ({
       >
         <div className="modal-content finance__backgroundModal jumbotron3 jumbotron3-fluid login login--background">
           <div className="modal-body">
-            <Button className="close" dataDismiss="modal" >
+            <Button className="close" dataDismiss="modal">
               <span aria-hidden="true">&times;</span>
             </Button>
             <div className="row text-left ml-5 mt-4">

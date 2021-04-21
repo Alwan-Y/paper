@@ -17,40 +17,77 @@ import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 import API from 'services';
 
 const Dashboard = () => {
-  const [update, setUpdate] = useState(0)
-  const [username, setUsername] = useState("")
-  const [name, setName] = useState("")
-  const [lastLogin, setLastLogin] = useState("")
-  const [allAccount, setAllAccount] = useState([])
-  const [accountName, setAccountName] = useState("")
-  const [accountType, setAccountType] = useState("")
-  const [accountDescription, setAccountDescription] = useState("") 
+  const [update, setUpdate] = useState(0);
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [lastLogin, setLastLogin] = useState('');
+  const [allAccount, setAllAccount] = useState([]);
+  const [accountName, setAccountName] = useState('');
+  const [accountType, setAccountType] = useState('');
+  const [accountDescription, setAccountDescription] = useState('');
+  const [modalViewData, setModalViewData] = useState({})
+  const [accountId, setAccountId] = useState('')
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
 
   const getDetailLogin = () => {
-    setUsername(localStorage.getItem("username"))
-    setName(localStorage.getItem("name"))
-    setLastLogin(localStorage.getItem("login"))
-  }
+    setUsername(localStorage.getItem('username'));
+    setName(localStorage.getItem('name'));
+    setLastLogin(localStorage.getItem('login'));
+  };
 
   const getAllAccount = async () => {
-    const allAccount = await API.getAllAccount()
-    setAllAccount(allAccount.data)
-  }
+    const allAccount = await API.getAllAccount();
+    setAllAccount(allAccount.data);
+  };
 
   const addAccount = async () => {
-    const addAccount = await API.addAccount(accountName, accountType, accountDescription)
+    const addAccount = await API.addAccount(
+      accountName,
+      accountType,
+      accountDescription
+    );
+
+    setUpdate(update + 1);
+
+    setAccountName('')
+    setAccountType('')
+    setAccountDescription('')
+
+    alert("Succes add account")
+  };
+
+  const updateAccount = async () => {
+    const updateAccount = await API.updateAccount(accountName, accountType, accountDescription, accountId)
+
+    if(!updateAccount) {
+      return alert("something error")
+    }
+
+    setAccountName('')
+    setAccountType('')
+    setAccountDescription('')
+
+    setUpdate(update + 1)
+
+    alert("Succes update account")
+  }
+
+  const deleteAccount = async () => {
+    const deleteAccount = await API.deleteAccount(accountId)
+
+    setUpdate(update + 1)
+
+    alert("Succes delete account")
   }
 
   useEffect(() => {
-    getDetailLogin()
-    getAllAccount()
-  }, [])
+    getDetailLogin();
+  }, []);
 
   useEffect(() => {
-    getAllAccount()
-  }, [update])
+    getAllAccount();
+  }, [update]);
 
   if (page) {
     return (
@@ -111,11 +148,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <Dropdown 
-            username={username}
-            name={name}
-            lastLogin={lastLogin}
-            />
+            <Dropdown username={username} name={name} lastLogin={lastLogin} />
           </div>
         </div>
       </div>
@@ -134,11 +167,11 @@ const Dashboard = () => {
             />
           </div>
           <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <Dropdown 
-            className="finance__dropdown"
-            username={username}
-            name={name}
-            lastLogin={lastLogin}
+            <Dropdown
+              className="finance__dropdown"
+              username={username}
+              name={name}
+              lastLogin={lastLogin}
             />
             <SwitchOption
               truee="true"
@@ -173,39 +206,74 @@ const Dashboard = () => {
               </div>
             </div>
             <DescriptionAccount />
-            {allAccount ? allAccount.map((account, idx) => {
-              return (
-                <ItemAccount
-                key={idx}
-                accountName={account.name}
-                description={account.description}
-                accountType={account.type}
-                dataTargetView="#viewAccount"
-                dataTargetEdit="#editAccount"
-                dataTargetDelete="#deleteAccount"
-                viewAccountName={account.name}
-                viewAccountType={account.type}
-                viewAccountDescription={account.description}
-              />
-              )
-            }) : null}
+            {allAccount
+              ? allAccount.map((account, idx) => {
+                  return (
+                    <ItemAccount
+                      key={idx}
+                      accountName={account.name}
+                      description={account.description}
+                      accountType={account.type}
+                      dataTargetView="#viewAccount"
+                      dataTargetEdit="#editAccount"
+                      dataTargetDelete="#deleteAccount"
+                      onClick={() => {
+                        setAccountId(account.finance_account_id)
+                        setModalViewData(account)
+                      }}
+                    />
+                  );
+                })
+              : null}
             <Pagination />
             <ModalCreateAccount
               target="createNewAccount"
               heading="Create New Account"
               onChangeAccountName={(e) => {
-                setAccountName(e.target.value)
+                setAccountName(e.target.value);
               }}
               onChangeTypeAccount={(e) => {
-                setAccountType(e.target.value)
+                setAccountType(e.target.value);
               }}
               onChangeDescription={(e) => {
-                setAccountDescription(e.target.value)
+                setAccountDescription(e.target.value);
               }}
               onClick={() => {
-                addAccount()
-                setUpdate(update + 1)
+                addAccount();
               }}
+            />
+            <ModalCreateAccount 
+            target="editAccount" 
+            heading="Edit Account" 
+            onChangeAccountName={(e) => {
+              setAccountName(e.target.value);
+            }}
+            onChangeTypeAccount={(e) => {
+              setAccountType(e.target.value);
+            }}
+            onChangeDescription={(e) => {
+              setAccountDescription(e.target.value);
+            }}
+            onClick={() => {
+              setAccountId(modalViewData.finance_account_id)
+              updateAccount();
+            }}
+            />
+            <ModalCreateAccount
+              target="viewAccount"
+              heading="View Account"
+              readOnly="readOnly"
+              valueAccountName={modalViewData.name}
+              valueTypeAccount={modalViewData.type}
+              valueDescription={modalViewData.description}
+            />
+            <ModalDelete 
+            target="deleteAccount" 
+            heading={modalViewData.name} 
+            onClick={() => {
+              setAccountId(modalViewData.finance_account_id)
+              deleteAccount()
+            }}
             />
           </div>
         </div>
@@ -224,7 +292,7 @@ const Dashboard = () => {
           />
         </div>
         <div className="col-10 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-          <Dropdown 
+          <Dropdown
             className="finance__dropdown"
             username={username}
             name={name}

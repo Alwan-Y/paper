@@ -7,10 +7,6 @@ const ModalDelete = ({
   heading,
   target,
   onClick,
-  onChangeFinanceName,
-  onChangeFinanceAccount,
-  onChangeAmount,
-  onChangeDescription,
 }) => {
   return (
     <div
@@ -27,12 +23,12 @@ const ModalDelete = ({
       >
         <div className="modal-content finance__backgroundModalDelete jumbotron3 jumbotron3-fluid finance finance--background">
           <div className="modal-body">
-            <Button className="close" dataDismiss="modal" >
+            <Button className="close" dataDismiss="modal">
               <span aria-hidden="true">&times;</span>
             </Button>
             <div className="row mt-3">
               <div className="col text-center mt-3">
-                <Heading1 className="finance__heading3 ">{heading}</Heading1>
+                <Heading1 className="finance__heading3 ">Delete {heading} </Heading1>
               </div>
             </div>
             <div className="row mt-3">

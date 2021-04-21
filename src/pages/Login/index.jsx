@@ -23,7 +23,7 @@ const Login = () => {
     }
 
     localStorage.setItem('login', data.last_login);
-    localStorage.setItem('username', email)
+    localStorage.setItem('username', email);
     localStorage.setItem('name', data.name);
     localStorage.setItem('token', data.token);
 
