@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import SideBar from 'components/resources/SideBar';
-import Chart from 'components/resources/Chart';
 import Dropdown from 'components/commons/Dropdown';
 import SwitchOption from 'components/commons/SwitchOption';
 import Heading1 from 'components/commons/Heading1';
@@ -15,6 +14,7 @@ import ModalCreate from 'components/commons/ModalCreate';
 import ModalDelete from 'components/commons/ModelDelete';
 import ModalCreateAccount from 'components/commons/ModalCreateAccount';
 import API from 'services';
+import DashboardPage from 'components/resources/DashboardPage';
 
 const Dashboard = () => {
   const [update, setUpdate] = useState(0);
@@ -158,67 +158,14 @@ const Dashboard = () => {
 
   if (page) {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard--background dashboard__backgroundSide">
-            <SideBar
-              onClickFinance={() => {
-                setPage(false);
-              }}
-            />
-          </div>
-          <div className="col-8 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <div className="row">
-              <h1 className="dashboard__hdashboard">DASHBOARD</h1>
-            </div>
-            <div className="row">
-              <div className="col-6">
-                <Chart />
-              </div>
-              <div className="col-6">
-                <h1 className="dashboard__tdashboard2">Finance Account</h1>
-                <div className="row">
-                  <div className="col col-3">
-                    <div className="row mb-4 dashboard__cardd mt-5">
-                      <div className="col-3">
-                        <h3 className="dashboard__imgButton">AA</h3>
-                      </div>
-                      <div className="col-8">
-                        <h6 className="m-0" className="dashboard__name mt-2">
-                          Adam Aria{' '}
-                          <span className="dashboard__span">- Bank</span>
-                        </h6>
-                        <p className="m-0 " className="dashboard__span">
-                          New Account
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col col-3">
-                    <div className="row mb-4 dashboard__cardd2 mt-5">
-                      <div className="col-3">
-                        <h3 className="dashboard__imgButton">AA</h3>
-                      </div>
-                      <div className="col-8">
-                        <h6 className="m-0" className="dashboard__name mt-2">
-                          Adam Aria{' '}
-                          <span className="dashboard__span">- Bank</span>
-                        </h6>
-                        <p className="m-0 " className="dashboard__span">
-                          New Account
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-            <Dropdown username={username} name={name} lastLogin={lastLogin} />
-          </div>
-        </div>
-      </div>
+      <DashboardPage
+        onClickFinance={() => {
+          setPage(false);
+        }}
+        username={username}
+        name={name}
+        lastLogin={lastLogin}
+      />
     );
   }
 
