@@ -12,6 +12,7 @@ const ItemTransaction = ({
   dataTargetView,
   dataTargetEdit,
   dataTargetDelete,
+  onClick,
 }) => {
   return (
     <div className="row text-left ml-5 mt-2 finance__item">
@@ -28,6 +29,7 @@ const ItemTransaction = ({
             dataToggle="dropdown"
             ariaHaspopup="true"
             ariaExpended="false"
+            onClick={onClick}
           >
             Action
           </Button>

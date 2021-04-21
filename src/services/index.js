@@ -105,10 +105,48 @@ class API {
     }
   };
 
+  static updateTransaction = async (
+    transactionName,
+    transactionAccountName,
+    transactionAmount,
+    transactionDescription,
+    accountId
+  ) => {
+    try {
+      const updateTransaction = await axios.patch(
+        `${baseLocalTesting}/api/v1/finances/${accountId}`,
+        {
+          finance_account_type_id: 1,
+          description: transactionDescription,
+          debit_amount: transactionAmount,
+          credit_amount: transactionAmount,
+          title: transactionName,
+          finance_account_name: transactionAccountName,
+        }
+      );
+
+      return updateTransaction;
+    } catch (e) {
+      return e;
+    }
+  };
+
   static deleteAccount = async (accountID) => {
     try {
       const deleteAccount = await axios.delete(
         `${baseLocalTesting}/api/v1/account/${accountID}`
+      );
+
+      return deleteAccount;
+    } catch (e) {
+      return e;
+    }
+  };
+
+  static deleteTransaction = async (accountId) => {
+    try {
+      const deleteAccount = await axios.delete(
+        `${baseLocalTesting}/api/v1/finances/${accountId}`
       );
 
       return deleteAccount;

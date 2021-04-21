@@ -32,6 +32,8 @@ const Dashboard = () => {
   const [transactionAccountName, setTransactionAccountName] = useState('');
   const [transactionDescription, setTransactionDescription] = useState('');
   const [transactionAmmount, setTransactionAmount] = useState('');
+  const [transactionId, setTransactionId] = useState('');
+  const [modalViewTransaction, setModalViewTransaction] = useState({});
   const [page, setPage] = useState(true);
   const [financePage, setFinancePage] = useState(true);
 
@@ -81,6 +83,8 @@ const Dashboard = () => {
     setTransactionAccountName('');
     setTransactionAmount('');
     setTransactionDescription('');
+
+    alert('Succes add transaction');
   };
 
   const updateAccount = async () => {
@@ -104,12 +108,43 @@ const Dashboard = () => {
     alert('Succes update account');
   };
 
+  const updateTransaction = async () => {
+    const updateTransaction = await API.updateTransaction(
+      transactionName,
+      transactionAccountName,
+      transactionAmmount,
+      transactionDescription,
+      transactionId
+    );
+
+    if (!updateTransaction) {
+      return alert('something error');
+    }
+
+    setUpdate(update + 1);
+
+    setTransactionName('');
+    setTransactionAccountName('');
+    setTransactionAmount('');
+    setTransactionDescription('');
+
+    alert('Succes update transaction');
+  };
+
   const deleteAccount = async () => {
     const deleteAccount = await API.deleteAccount(accountId);
 
     setUpdate(update + 1);
 
     alert('Succes delete account');
+  };
+
+  const deleteTransaction = async () => {
+    const deleteTransaction = await API.deleteTransaction(transactionId);
+
+    setUpdate(update + 1);
+
+    alert('Succes delete transaction');
   };
 
   useEffect(() => {
@@ -120,8 +155,6 @@ const Dashboard = () => {
     getAllAccount();
     getAllTransaction();
   }, [update]);
-
-  console.log(allTransaction);
 
   if (page) {
     return (
@@ -377,6 +410,10 @@ const Dashboard = () => {
                     dataTargetView="#viewFinance"
                     dataTargetEdit="#editFinance"
                     dataTargetDelete="#deleteFinance"
+                    onClick={() => {
+                      setTransactionId(transaction.finance_account_id);
+                      setModalViewTransaction(transaction);
+                    }}
                   />
                 );
               })
@@ -405,19 +442,20 @@ const Dashboard = () => {
             target="editFinance"
             heading="Edit Finance"
             onClick={() => {
-              console.log('oke');
+              setTransactionId(modalViewTransaction.finance_account_id);
+              updateTransaction();
             }}
             onChangeFinanceName={(e) => {
-              console.log(e.target.value);
+              setTransactionName(e.target.value);
             }}
             onChangeFinanceAccount={(e) => {
-              console.log(e.target.value);
+              setTransactionAccountName(e.target.value);
             }}
             onChangeAmount={(e) => {
-              console.log(e.target.value);
+              setTransactionAmount(e.target.value);
             }}
             onChangeDescription={(e) => {
-              console.log(e.target.value);
+              setTransactionDescription(e.target.value);
             }}
           />
           <ModalCreate
@@ -427,12 +465,19 @@ const Dashboard = () => {
               console.log('oke');
             }}
             readOnly="readOnly"
-            valueFinanceName="Example"
-            valueFinanceAccount="Example"
-            valueAmount="Example"
-            valueDescription="Example"
+            valueFinanceName={modalViewTransaction.title}
+            valueFinanceAccount={modalViewTransaction.finance_account_name}
+            valueAmount={modalViewTransaction.debit_amount}
+            valueDescription={modalViewTransaction.description}
           />
-          <ModalDelete target="deleteFinance" heading="Delete Finance" />
+          <ModalDelete
+            target="deleteFinance"
+            heading={modalViewTransaction.title}
+            onClick={() => {
+              setAccountId(modalViewTransaction.finance_account_id);
+              deleteTransaction();
+            }}
+          />
         </div>
       </div>
     </div>
