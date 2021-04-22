@@ -14,15 +14,15 @@ const Dashboard = () => {
   const [financePage, setFinancePage] = useState(true);
 
   const logout = () => {
-    localStorage.removeItem("login"); 
-    localStorage.removeItem("username"); 
-    localStorage.removeItem("name"); 
-    localStorage.removeItem("token"); 
+    localStorage.removeItem('login');
+    localStorage.removeItem('username');
+    localStorage.removeItem('name');
+    localStorage.removeItem('token');
 
-    alert("Succes logout~")
+    alert('Succes logout~');
 
     history.push(ROUTES.ROOT);
-  }
+  };
 
   const getDetailLogin = () => {
     setUsername(localStorage.getItem('username'));
@@ -44,7 +44,7 @@ const Dashboard = () => {
         name={name}
         lastLogin={lastLogin}
         onClickLogout={() => {
-          logout()
+          logout();
         }}
       />
     );
@@ -63,7 +63,7 @@ const Dashboard = () => {
           setFinancePage(false);
         }}
         onClickLogout={() => {
-          logout()
+          logout();
         }}
       />
     );
@@ -82,7 +82,7 @@ const Dashboard = () => {
       name={name}
       lastLogin={lastLogin}
       onClickLogout={() => {
-        logout()
+        logout();
       }}
     />
   );

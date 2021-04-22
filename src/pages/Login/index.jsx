@@ -73,9 +73,7 @@ const Login = () => {
                   }}
                 />
                 <hr />
-                <Heading6 className="login__forgotPassword mt-5">
-                  Lupa kata sandi?
-                </Heading6>
+                <Heading6 className="login__forgotPassword mt-5">Lupa kata sandi?</Heading6>
                 <Button
                   type="success"
                   size="lg"

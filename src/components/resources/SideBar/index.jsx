@@ -8,17 +8,9 @@ const SideBar = ({ onClickDashboard, onClickFinance }) => {
     <div className="row">
       <div className="col dashboard__logo">
         <img className="dashboard__logo" src={paperLogo} alt="logo paper" />
-        <Heading6
-          className="dashboard__heading mt-5"
-          onClick={onClickDashboard}
-        >
+        <Heading6 className="dashboard__heading mt-5" onClick={onClickDashboard}>
           {' '}
-          <img
-            className="dashboard__icon"
-            src={dashboardLogo}
-            alt="dashboard logo"
-          />{' '}
-          Dashboard
+          <img className="dashboard__icon" src={dashboardLogo} alt="dashboard logo" /> Dashboard
         </Heading6>
         <Heading6 className="dashboard__heading mt-5" onClick={onClickFinance}>
           {' '}

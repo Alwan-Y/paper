@@ -19,9 +19,7 @@ class API {
 
   static getAllAccount = async () => {
     try {
-      const getAllAcount = await axios.get(
-        `${baseLocalTesting}/api/v1/account`
-      );
+      const getAllAcount = await axios.get(`${baseLocalTesting}/api/v1/account`);
 
       return getAllAcount;
     } catch (e) {
@@ -31,9 +29,7 @@ class API {
 
   static getAllTransaction = async () => {
     try {
-      const getAllTransaction = await axios.get(
-        `${baseLocalTesting}/api/v1/finances`
-      );
+      const getAllTransaction = await axios.get(`${baseLocalTesting}/api/v1/finances`);
 
       return getAllTransaction;
     } catch (e) {
@@ -43,14 +39,11 @@ class API {
 
   static addAccount = async (accountName, accountType, accountDescription) => {
     try {
-      const addAccount = await axios.post(
-        `${baseLocalTesting}/api/v1/account`,
-        {
-          name: accountName,
-          type: accountType,
-          description: accountDescription,
-        }
-      );
+      const addAccount = await axios.post(`${baseLocalTesting}/api/v1/account`, {
+        name: accountName,
+        type: accountType,
+        description: accountDescription,
+      });
 
       return addAccount;
     } catch (e) {
@@ -62,20 +55,17 @@ class API {
     transactionName,
     transactionAccountName,
     transactionAmount,
-    transactionDescription
+    transactionDescription,
   ) => {
     try {
-      const addTransaction = await axios.post(
-        `${baseLocalTesting}/api/v1/finances`,
-        {
-          finance_account_type_id: 1,
-          description: transactionDescription,
-          debit_amount: transactionAmount,
-          credit_amount: transactionAmount,
-          title: transactionName,
-          finance_account_name: transactionAccountName,
-        }
-      );
+      const addTransaction = await axios.post(`${baseLocalTesting}/api/v1/finances`, {
+        finance_account_type_id: 1,
+        description: transactionDescription,
+        debit_amount: transactionAmount,
+        credit_amount: transactionAmount,
+        title: transactionName,
+        finance_account_name: transactionAccountName,
+      });
 
       return addTransaction;
     } catch (e) {
@@ -83,21 +73,13 @@ class API {
     }
   };
 
-  static updateAccount = async (
-    accountName,
-    accountType,
-    accountDescription,
-    accountID
-  ) => {
+  static updateAccount = async (accountName, accountType, accountDescription, accountID) => {
     try {
-      const updateAccount = await axios.patch(
-        `${baseLocalTesting}/api/v1/account/${accountID}`,
-        {
-          name: accountName,
-          type: accountType,
-          description: accountDescription,
-        }
-      );
+      const updateAccount = await axios.patch(`${baseLocalTesting}/api/v1/account/${accountID}`, {
+        name: accountName,
+        type: accountType,
+        description: accountDescription,
+      });
 
       return updateAccount;
     } catch (e) {
@@ -110,7 +92,7 @@ class API {
     transactionAccountName,
     transactionAmount,
     transactionDescription,
-    accountId
+    accountId,
   ) => {
     try {
       const updateTransaction = await axios.patch(
@@ -122,7 +104,7 @@ class API {
           credit_amount: transactionAmount,
           title: transactionName,
           finance_account_name: transactionAccountName,
-        }
+        },
       );
 
       return updateTransaction;
@@ -133,9 +115,7 @@ class API {
 
   static deleteAccount = async (accountID) => {
     try {
-      const deleteAccount = await axios.delete(
-        `${baseLocalTesting}/api/v1/account/${accountID}`
-      );
+      const deleteAccount = await axios.delete(`${baseLocalTesting}/api/v1/account/${accountID}`);
 
       return deleteAccount;
     } catch (e) {
@@ -145,9 +125,7 @@ class API {
 
   static deleteTransaction = async (accountId) => {
     try {
-      const deleteAccount = await axios.delete(
-        `${baseLocalTesting}/api/v1/finances/${accountId}`
-      );
+      const deleteAccount = await axios.delete(`${baseLocalTesting}/api/v1/finances/${accountId}`);
 
       return deleteAccount;
     } catch (e) {

@@ -23,10 +23,7 @@ const ModalCreateAccount = ({
       aria-labelledby="exampleModalCenterTitle"
       aria-hidden="true"
     >
-      <div
-        className="modal-dialog modal-dialog-centered modal-lg"
-        role="document"
-      >
+      <div className="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div className="modal-content finance__backgroundModal jumbotron3 jumbotron3-fluid login login--background">
           <div className="modal-body">
             <Button className="close" dataDismiss="modal">
@@ -39,9 +36,7 @@ const ModalCreateAccount = ({
             </div>
             <div className="row mt-3">
               <div className="col text-left">
-                <Heading1 className="finance__heading2 ml-5">
-                  {heading}
-                </Heading1>
+                <Heading1 className="finance__heading2 ml-5">{heading}</Heading1>
               </div>
             </div>
             <div className="row mt-5">

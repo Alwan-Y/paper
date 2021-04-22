@@ -18,8 +18,9 @@ const AccountPage = ({
   name,
   lastLogin,
   onClickSetFinancePage,
-  onClickLogout
+  onClickLogout,
 }) => {
+  const [accountRender, setAccountRender] = useState(1);
   const [update, setUpdate] = useState(0);
   const [allAccount, setAllAccount] = useState([]);
   const [accountId, setAccountId] = useState('');
@@ -27,7 +28,19 @@ const AccountPage = ({
   const [accountName, setAccountName] = useState('');
   const [accountType, setAccountType] = useState('');
   const [accountDescription, setAccountDescription] = useState('');
-  const [paginationTotal, setPaginationTotal] = useState(1)
+  const [paginationTotal, setPaginationTotal] = useState(1);
+  const [search, setSearch] = useState('');
+  const [displayData, setDisplayData] = useState([]);
+
+  const findAccount = () => {
+    if (!search) {
+      return setDisplayData(allAccount);
+    }
+
+    const findAccount = allAccount.filter((account) => account.name == search);
+
+    return setDisplayData(findAccount);
+  };
 
   const setNullVariable = () => {
     setAccountName('');
@@ -38,14 +51,11 @@ const AccountPage = ({
   const getAllAccount = async () => {
     const allAccount = await API.getAllAccount();
     setAllAccount(allAccount.data);
+    setAccountRender(accountRender + 1);
   };
 
   const addAccount = async () => {
-    const addAccount = await API.addAccount(
-      accountName,
-      accountType,
-      accountDescription
-    );
+    const addAccount = await API.addAccount(accountName, accountType, accountDescription);
 
     setUpdate(update + 1);
 
@@ -59,7 +69,7 @@ const AccountPage = ({
       accountName,
       accountType,
       accountDescription,
-      accountId
+      accountId,
     );
 
     if (!updateAccount) {
@@ -85,6 +95,10 @@ const AccountPage = ({
     getAllAccount();
   }, [update]);
 
+  useEffect(() => {
+    findAccount();
+  }, [accountRender]);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -103,14 +117,20 @@ const AccountPage = ({
           <hr className="finance__hr" />
           <div className="row">
             <div className="col text-left">
-              <Heading1 className="finance__heading ml-5 mt-5">
-                All Finance Account
-              </Heading1>
+              <Heading1 className="finance__heading ml-5 mt-5">All Finance Account</Heading1>
             </div>
           </div>
           <div className="row">
             <div className="col-4 ml-5 mt-4">
-              <Search placeholder="Search" />
+              <Search
+                placeholder="Search by account name"
+                onChangeSearch={(e) => {
+                  setSearch(e.target.value);
+                }}
+                onClickSearch={() => {
+                  findAccount();
+                }}
+              />
             </div>
             <div className="col-7 text-right">
               <p>
@@ -127,8 +147,8 @@ const AccountPage = ({
             </div>
           </div>
           <DescriptionAccount />
-          {allAccount
-            ? allAccount.map((account, idx) => {
+          {displayData
+            ? displayData.map((account, idx) => {
                 return (
                   <ItemAccount
                     key={idx}
@@ -146,28 +166,28 @@ const AccountPage = ({
                 );
               })
             : null}
-          <Pagination 
-          onClickDoubleLeft={() => {
-            if (paginationTotal && paginationTotal <= 10) {
-              return setPaginationTotal(1)
-            }
+          <Pagination
+            onClickDoubleLeft={() => {
+              if (paginationTotal && paginationTotal <= 10) {
+                return setPaginationTotal(1);
+              }
 
-            setPaginationTotal(paginationTotal - 10)
-          }}
-          onClickLeft={() => {
-            if (paginationTotal && paginationTotal <= 1) {
-              return setPaginationTotal(1)
-            }
+              setPaginationTotal(paginationTotal - 10);
+            }}
+            onClickLeft={() => {
+              if (paginationTotal && paginationTotal <= 1) {
+                return setPaginationTotal(1);
+              }
 
-            setPaginationTotal(paginationTotal - 1)
-          }}
-          onClickRight={() => {
-            setPaginationTotal(paginationTotal + 1)
-          }}
-          onClickDoubleRight={() => {
-            setPaginationTotal(paginationTotal + 10)
-          }}
-          total={paginationTotal}
+              setPaginationTotal(paginationTotal - 1);
+            }}
+            onClickRight={() => {
+              setPaginationTotal(paginationTotal + 1);
+            }}
+            onClickDoubleRight={() => {
+              setPaginationTotal(paginationTotal + 10);
+            }}
+            total={paginationTotal}
           />
           <ModalCreateAccount
             target="createNewAccount"

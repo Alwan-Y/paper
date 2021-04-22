@@ -6,6 +6,7 @@ const Input = ({
   onChange,
   className,
   readOnly,
+  ariaDesctibedby,
 }) => (
   <div className="form-group">
     <input

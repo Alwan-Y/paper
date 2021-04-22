@@ -1,25 +1,21 @@
 import search from 'assets/images/index/loupe.png';
+import Button from 'components/commons/Button';
 
-const Search = ({ placeholder, onClick }) => {
+const Search = ({ placeholder, onClickSearch, onChangeSearch }) => {
   return (
     <div>
       <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
         <div className="input-group">
           <input
-            type="search"
+            type="text"
             placeholder={placeholder}
-            aria-describedby="button-addon1"
             className="form-control border-0 bg-light"
+            onChange={onChangeSearch}
           />
           <div className="input-group-append">
-            <button
-              id="button-addon1"
-              type="submit"
-              className="btn btn-link text-primary"
-              onClick={onClick}
-            >
+            <Button type="submit" className="text-primary" onClick={onClickSearch}>
               <img src={search} alt="" />
-            </button>
+            </Button>
           </div>
         </div>
       </div>

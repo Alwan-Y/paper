@@ -34,25 +34,13 @@ const ItemTransaction = ({
             Action
           </Button>
           <div className="dropdown-menu">
-            <Button
-              className="dropdown-item"
-              dataToggle="modal"
-              dataTarget={dataTargetView}
-            >
+            <Button className="dropdown-item" dataToggle="modal" dataTarget={dataTargetView}>
               <img src={view} alt="view" /> View
             </Button>
-            <Button
-              className="dropdown-item"
-              dataToggle="modal"
-              dataTarget={dataTargetEdit}
-            >
+            <Button className="dropdown-item" dataToggle="modal" dataTarget={dataTargetEdit}>
               <img src={edit} alt="edit" /> Edit
             </Button>
-            <Button
-              className="dropdown-item"
-              dataToggle="modal"
-              dataTarget={dataTargetDelete}
-            >
+            <Button className="dropdown-item" dataToggle="modal" dataTarget={dataTargetDelete}>
               <img src={trash} alt="trash" /> Delete
             </Button>
           </div>

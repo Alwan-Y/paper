@@ -1,9 +1,4 @@
-import {
-  Route,
-  Switch,
-  BrowserRouter as Router,
-  Redirect,
-} from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import pages from './pages';
 import routes from './configs/routes';
 

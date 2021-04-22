@@ -27,8 +27,7 @@ const DashboardPage = ({ onClickFinance, username, name, lastLogin, onClickLogou
                     </div>
                     <div className="col-8">
                       <h6 className="m-0" className="dashboard__name mt-2">
-                        Adam Aria{' '}
-                        <span className="dashboard__span">- Bank</span>
+                        Adam Aria <span className="dashboard__span">- Bank</span>
                       </h6>
                       <p className="m-0 " className="dashboard__span">
                         New Account
@@ -43,8 +42,7 @@ const DashboardPage = ({ onClickFinance, username, name, lastLogin, onClickLogou
                     </div>
                     <div className="col-8">
                       <h6 className="m-0" className="dashboard__name mt-2">
-                        Adam Aria{' '}
-                        <span className="dashboard__span">- Bank</span>
+                        Adam Aria <span className="dashboard__span">- Bank</span>
                       </h6>
                       <p className="m-0 " className="dashboard__span">
                         New Account
@@ -57,11 +55,12 @@ const DashboardPage = ({ onClickFinance, username, name, lastLogin, onClickLogou
           </div>
         </div>
         <div className="col-2 jumbotron jumbotron-fluid dashboard dashboard2--background dashboard__backgroundSide2">
-          <Dropdown 
-          username={username} 
-          name={name} 
-          lastLogin={lastLogin} 
-          onClickLogout={onClickLogout}/>
+          <Dropdown
+            username={username}
+            name={name}
+            lastLogin={lastLogin}
+            onClickLogout={onClickLogout}
+          />
         </div>
       </div>
     </div>

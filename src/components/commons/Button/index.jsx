@@ -23,7 +23,7 @@ const Button = ({
       { [`btn-${type}`]: !outline },
       { [`btn-${size}`]: size },
       { 'btn-block': block },
-      className
+      className,
     )}
     onClick={onClick}
     data-toggle={dataToggle}

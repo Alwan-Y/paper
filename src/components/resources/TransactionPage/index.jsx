@@ -18,8 +18,9 @@ const TransactionPage = ({
   username,
   name,
   lastLogin,
-  onClickLogout
+  onClickLogout,
 }) => {
+  const [transactionRender, setTransactionRender] = useState(1);
   const [update, setUpdate] = useState(0);
   const [allTransaction, setAllTransaction] = useState([]);
   const [transactionName, setTransactionName] = useState('');
@@ -28,7 +29,22 @@ const TransactionPage = ({
   const [transactionAmmount, setTransactionAmount] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [modalViewTransaction, setModalViewTransaction] = useState({});
-  const [paginationTotal, setPaginationTotal] = useState(1)
+  const [paginationTotal, setPaginationTotal] = useState(1);
+  const [search, setSearch] = useState('');
+  const [displayData, setDisplayData] = useState([]);
+
+  const findTransaction = () => {
+    if (!search) {
+      console.log('jalan');
+      return setDisplayData(allTransaction);
+    }
+    console.log('jalan2');
+    const findTransaction = allTransaction.filter(
+      (transaction) => transaction.finance_account_name == search,
+    );
+    console.log(findTransaction);
+    return setDisplayData(findTransaction);
+  };
 
   const setNullVariable = () => {
     setTransactionName('');
@@ -40,6 +56,7 @@ const TransactionPage = ({
   const getAllTransaction = async () => {
     const allTransaction = await API.getAllTransaction();
     setAllTransaction(allTransaction.data);
+    setTransactionRender(transactionRender + 1);
   };
 
   const addTransaction = async () => {
@@ -47,7 +64,7 @@ const TransactionPage = ({
       transactionName,
       transactionAccountName,
       transactionAmmount,
-      transactionDescription
+      transactionDescription,
     );
 
     setUpdate(update + 1);
@@ -63,7 +80,7 @@ const TransactionPage = ({
       transactionAccountName,
       transactionAmmount,
       transactionDescription,
-      transactionId
+      transactionId,
     );
 
     if (!updateTransaction) {
@@ -89,6 +106,10 @@ const TransactionPage = ({
     getAllTransaction();
   }, [update]);
 
+  useEffect(() => {
+    findTransaction();
+  }, [transactionRender]);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -107,14 +128,20 @@ const TransactionPage = ({
           <hr className="finance__hr" />
           <div className="row">
             <div className="col text-left">
-              <Heading1 className="finance__heading ml-5 mt-5">
-                All Finance Transaction
-              </Heading1>
+              <Heading1 className="finance__heading ml-5 mt-5">All Finance Transaction</Heading1>
             </div>
           </div>
           <div className="row">
             <div className="col-4 ml-5 mt-4">
-              <Search placeholder="Search" />
+              <Search
+                placeholder="Search by account name"
+                onChangeSearch={(e) => {
+                  setSearch(e.target.value);
+                }}
+                onClickSearch={() => {
+                  findTransaction();
+                }}
+              />
             </div>
             <div className="col-7 text-right">
               <p>
@@ -131,8 +158,8 @@ const TransactionPage = ({
             </div>
           </div>
           <DescriptionTransaction />
-          {allTransaction
-            ? allTransaction.map((transaction, idx) => {
+          {displayData
+            ? displayData.map((transaction, idx) => {
                 return (
                   <ItemTransaction
                     key={idx}
@@ -152,28 +179,28 @@ const TransactionPage = ({
                 );
               })
             : null}
-          <Pagination 
-          onClickDoubleLeft={() => {
-            if (paginationTotal && paginationTotal <= 10) {
-              return setPaginationTotal(1)
-            }
+          <Pagination
+            onClickDoubleLeft={() => {
+              if (paginationTotal && paginationTotal <= 10) {
+                return setPaginationTotal(1);
+              }
 
-            setPaginationTotal(paginationTotal - 10)
-          }}
-          onClickLeft={() => {
-            if (paginationTotal && paginationTotal <= 1) {
-              return setPaginationTotal(1)
-            }
+              setPaginationTotal(paginationTotal - 10);
+            }}
+            onClickLeft={() => {
+              if (paginationTotal && paginationTotal <= 1) {
+                return setPaginationTotal(1);
+              }
 
-            setPaginationTotal(paginationTotal - 1)
-          }}
-          onClickRight={() => {
-            setPaginationTotal(paginationTotal + 1)
-          }}
-          onClickDoubleRight={() => {
-            setPaginationTotal(paginationTotal + 10)
-          }}
-          total={paginationTotal}
+              setPaginationTotal(paginationTotal - 1);
+            }}
+            onClickRight={() => {
+              setPaginationTotal(paginationTotal + 1);
+            }}
+            onClickDoubleRight={() => {
+              setPaginationTotal(paginationTotal + 10);
+            }}
+            total={paginationTotal}
           />
           <ModalCreate
             target="createNewFinance"
